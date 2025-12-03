@@ -695,7 +695,7 @@
 
     <!--======== software section start ========-->
     <section class="software-area bg-area">
-        <div class="container">
+        <div class="container rounded">
             <h2 class="section-heading">Our Software</h2>
             <div class="main">
                 <div id="myBtnContainer">
@@ -709,8 +709,8 @@
                     <div class="column clinic">
                         <div class="content">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                <div class="col-lg-6 col-md-6 col-sm-12 mt-4 ">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-1.png') }}" alt="template-1">
                                         </div>
@@ -729,7 +729,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-1.png') }}" alt="template-1">
                                         </div>
@@ -748,7 +748,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-1.png') }}" alt="template-1">
                                         </div>
@@ -767,7 +767,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-1.png') }}" alt="template-1">
                                         </div>
@@ -793,7 +793,7 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-2.png') }}" alt="template-2">
                                         </div>
@@ -821,7 +821,7 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-2.png') }}" alt="template-2">
                                         </div>
@@ -840,7 +840,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-1.png') }}" alt="template-1">
                                         </div>
@@ -857,7 +857,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-2.png') }}" alt="template-2">
                                         </div>
@@ -883,7 +883,7 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-1.png') }}" alt="template-1">
                                         </div>
@@ -900,7 +900,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                                    <div class="template-content">
+                                    <div class="template-content border p-2 rounded">
                                         <div class="template-img">
                                             <img src="{{ url('assets/frontend/images/template-2.png') }}" alt="template-2">
                                         </div>
