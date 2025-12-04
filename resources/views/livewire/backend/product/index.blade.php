@@ -117,15 +117,19 @@
                         <tr>
                             <td>{{ $product->id }}</td>
                             <td>
-                                @if ($product->thumbnail_url)
-                                <img src="{{ $product->thumbnail_url }}" alt="{{ $product->name }}" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                                @if ($product->thumbnail_image_path)
+                                <img src="{{ url('storage/' . $product->thumbnail_image_path) }}" alt="{{ $product->name }}" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
                                 @else
                                 <i class="fas fa-image fa-2x text-muted"></i>
                                 @endif
                             </td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->sku ?? 'N/A' }}</td>
-                            <td>{{ $product->category->name ?? 'N/A' }}</td>
+                            <td>
+                                    @foreach($product->categories as $category)
+                                    {{ $category->name }}, 
+                                    @endforeach
+                            </td>
                             <td>{{ $product->brand->name ?? 'N/A' }}</td>
                             <td><span class="badge bg-primary">{{ $product->type->label() }}</span></td>
                             <td>{{ number_format($product->price, 2) }}</td>
