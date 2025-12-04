@@ -4,10 +4,10 @@ namespace App\Livewire\Frontend\Home;
 
 use Livewire\Component;
 
-class Features extends Component
+class SlideSection extends Component
 {
     public function render()
     {
-        return view('livewire.frontend.home.features');
+        return view('livewire.frontend.home.slide-section');
     }
 }

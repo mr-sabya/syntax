@@ -4,10 +4,10 @@ namespace App\Livewire\Frontend\Home;
 
 use Livewire\Component;
 
-class Banner extends Component
+class DealSection extends Component
 {
     public function render()
     {
-        return view('livewire.frontend.home.banner');
+        return view('livewire.frontend.home.deal-section');
     }
 }

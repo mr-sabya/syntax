@@ -4,10 +4,10 @@ namespace App\Livewire\Frontend\Home;
 
 use Livewire\Component;
 
-class SpecialProducts extends Component
+class NewsSection extends Component
 {
     public function render()
     {
-        return view('livewire.frontend.home.special-products');
+        return view('livewire.frontend.home.news-section');
     }
 }

@@ -556,13 +556,16 @@ header label {
   border-radius: 8px;
   background-color: #ffffff;
 }
-.new-slide-area .container .all-product {
-  padding: 10px 0;
+.new-slide-area .container {
+  padding: 10px;
+}
+.new-slide-area .container .all-product{
+  height: 100%;
 }
 .new-slide-area .container .all-product ul li {
   border: 1px solid #249B3E;
   padding: 4px;
-  margin: 2px 0;
+  /* margin: 2px 0; */
   border-radius: 4px;
 }
 .new-slide-area .container .all-product ul li:hover {
@@ -578,7 +581,6 @@ header label {
   font-weight: 500;
 }
 .new-slide-area .container .carousel-inner .carousel-item {
-  padding: 10px 0px;
   border-radius: 8px;
 }
 .new-slide-area .container .carousel-inner .carousel-item img {

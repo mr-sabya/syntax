@@ -4,10 +4,10 @@ namespace App\Livewire\Frontend\Home;
 
 use Livewire\Component;
 
-class Category extends Component
+class SubscribeSection extends Component
 {
     public function render()
     {
-        return view('livewire.frontend.home.category');
+        return view('livewire.frontend.home.subscribe-section');
     }
 }
