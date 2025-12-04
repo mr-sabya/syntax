@@ -13,7 +13,7 @@ class Index extends Component
 
     // Table state
     public $search = '';
-    public $sortField = 'name';
+    public $sortField = 'sort_order';
     public $sortDirection = 'asc';
     public $perPage = 10;
 
@@ -52,7 +52,7 @@ class Index extends Component
     public function editCategory($categoryId)
     {
         // This will generate a URL like /categories/1/edit and redirect the browser
-        return $this->redirect(route('categories.edit', ['category' => $categoryId]), navigate: true);
+        return $this->redirect(route('admin.product.categories.edit', ['category' => $categoryId]), navigate: true);
     }
 
     // Delete category

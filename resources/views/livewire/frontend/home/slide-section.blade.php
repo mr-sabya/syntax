@@ -1,90 +1,75 @@
 <section class="new-slide-area bg-area">
     <div class="container">
         <div class="row">
+            <!-- Categories Sidebar -->
             <div class="col-lg-3 col-md-4 col-sm-12">
                 <div class="all-product">
                     <ul class="d-ul">
+                        @forelse($categories as $category)
                         <li class="d-li">
-                            <a href="product.html">
-                                <p class="m-0">Laboratory Consumables</p>
+                            {{-- Adjust the route name ('collections' or 'category') based on your routes file --}}
+                            <a href="{{ url('collections/'.$category->slug) }}">
+                                <p class="m-0">{{ $category->name }}</p>
                             </a>
                         </li>
+                        @empty
                         <li class="d-li">
-                            <a href="product.html">
-                                <p class="m-0">Capital Machinery</p>
-                            </a>
+                            <p class="m-0">No Category Found!!</p>
                         </li>
-                        <li class="d-li">
-                            <a href="product.html">
-                                <p class="m-0">Laboratory Equipment</p>
-                            </a>
-                        </li>
-                        <li class="d-li">
-                            <a href="product.html">
-                                <p class="m-0">Sports and outdoor</p>
-                            </a>
-                        </li>
-                        <li class="d-li">
-                            <a href="product.html">
-                                <p class="m-0">Tools, equipments</p>
-                            </a>
-                        </li>
-                        <li class="d-li">
-                            <a href="product.html">
-                                <p class="m-0">Animal and pets</p>
-                            </a>
-                        </li>
-                        <li class="d-li">
-                            <a href="product.html">
-                                <p class="m-0">Machinery tools</p>
-                            </a>
-                        </li>
+                        @endforelse
                     </ul>
                 </div>
             </div>
+
+            <!-- Banner Carousel -->
             <div class="col-lg-9 col-md-8 col-sm-12">
+                @if($banners->count() > 0)
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+                    <!-- Dynamic Indicators -->
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        @foreach($banners as $key => $banner)
+                        <button type="button"
+                            data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide-to="{{ $key }}"
+                            class="{{ $key == 0 ? 'active' : '' }}"
+                            aria-current="{{ $key == 0 ? 'true' : 'false' }}"
+                            aria-label="Slide {{ $key + 1 }}">
+                        </button>
+                        @endforeach
                     </div>
+
+                    <!-- Dynamic Slides -->
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{ url('assets/frontend/images/banner-bg-1.png') }}" class="d-block w-100" alt="banner-bg-1">
+                        @foreach($banners as $key => $banner)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+
+                            {{-- Make sure your Banner model accessor or path is correct --}}
+                            <img src="{{ url('storage/'. $banner->image) }}" class="d-block w-100" alt="{{ $banner->title ?? 'banner' }}">
+
                             <div class="carousel-caption d-none d-md-block">
-                                <h2>Latest trending
-                                    <span>Electronic items</span>
+                                <h2>
+                                    {{ $banner->title }}
+                                    @if($banner->subtitle)
+                                    <span>{{ $banner->subtitle }}</span>
+                                    @endif
                                 </h2>
-                                <a href="#">
-                                    <button>source now</button>
+
+                                @if($banner->link)
+                                <a href="{{ $banner->link }}">
+                                    <button>{{ $banner->button}}</button>
                                 </a>
+                                @endif
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <img src="{{ url('assets/frontend/images/banner-bg-2.png') }}" class="d-block w-100" alt="banner-bg-2">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h2>Latest trending
-                                    <span>Electronic items</span>
-                                </h2>
-                                <a href="#">
-                                    <button>source now</button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ url('assets/frontend/images/banner-bg-3.png') }}" class="d-block w-100" alt="banner-bg-3">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h2>Latest trending
-                                    <span>Electronic items</span>
-                                </h2>
-                                <a href="#">
-                                    <button>source now</button>
-                                </a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
+
                 </div>
+                @else
+                {{-- Optional: Fallback content if no banners exist --}}
+                <div class="alert alert-warning">No banners configured.</div>
+                @endif
             </div>
         </div>
     </div>

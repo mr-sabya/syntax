@@ -148,7 +148,7 @@ class Manage extends Component
         }
 
         // Redirect back to the categories index page
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.product.categories.index');
     }
 
     public function render()
