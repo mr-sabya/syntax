@@ -8,8 +8,8 @@
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="counter-wrapper">
                             <div class="counter-text">
-                                <h2 id="headline">{{ $deal->name }}</h2>
-                                <p id="decribe">{{ $deal->description }}</p>
+                                <h2 id="headline">Deals and offers</h2>
+                                <p id="decribe">{{ $deal->name }}</p>
                             </div>
 
                             <!-- Pass the expiration date to JS via data-date attribute -->
