@@ -42,6 +42,7 @@ section{
 
 .container {
   margin: 0 auto;
+  /* padding: 0; */
 }
 
 /* common btn start   */
@@ -87,19 +88,16 @@ p.text {
 /* ========== common-heading end ==========  */
 /* ========== section-heading start ==========  */
 .section-heading {
-  font-size: 45px;
+  font-size: 35px;
   font-weight: 600;
   color: #000000;
   text-transform: capitalize;
   text-align: center;
-  margin-bottom: 30px;
-  cursor: pointer;
+  margin-bottom: 40px;
   transition: all linear 0.2s;
 }
 
-.section-heading:hover {
-  color: #5092dd;
-}
+
 
 /* ========== section-heading end ==========  */
 /* ========== heading start ==========  */
@@ -609,13 +607,10 @@ header label {
   margin-top: 170px;
 }
 
-.new-slide-area .container {
+.new-slide-area .banner-container {
   border: 1px solid #8B96A5;
   border-radius: 8px;
   background-color: #ffffff;
-}
-
-.new-slide-area .container {
   padding: 10px;
 }
 
@@ -700,18 +695,21 @@ header label {
 
 /*  ======= new-slide section end ======= */
 /* ====== deals section start  ========  */
-.deals-area .container {
+
+
+.deals-area .container .deals-wrapper {
+  padding: 10px 0;
   background-color: #ffffff;
   border-radius: 4px;
   box-shadow: 0 0 2px rgba(190, 195, 203, 0.2784313725);
 }
 
-.deals-area .container .deals-wrapper {
-  padding: 10px 0;
-}
-
 .deals-area .container .counter-wrapper {
-  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .deals-area .container .counter-wrapper h2 {
@@ -719,17 +717,20 @@ header label {
   font-weight: 700;
   color: #1C1C1C;
   margin-bottom: 0;
+  text-align: center;
 }
 
 .deals-area .container .counter-wrapper p {
   color: #717171;
   font-size: 16px;
   font-weight: 400;
+  text-align: center;
 }
 
 .deals-area .container .counter-wrapper #countdown ul {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   margin-top: 20px;
 }
 
@@ -816,7 +817,7 @@ header label {
 /* ====== deals section end  ========  */
 /* ====== gadget section start  ========  */
 /* ====== Gadget Section Start ======== */
-.gadget-area .container {
+.gadget-area .gadger-container {
     border-radius: 4px;
     background-color: #ffffff;
     overflow: hidden;
@@ -1164,10 +1165,6 @@ header label {
 /* ====== new-arrival-area section end  ========  */
 /* ======  recommended-area section start  ========  */
 /* ======  recommended-area section start  ========  */
-.recommended-area .container {
-    border-radius: 4px;
-    padding: 0;
-}
 
 .recommended-area .container .items {
     width: 100%;
@@ -1321,8 +1318,9 @@ header label {
 /* ======== software section start ========  */
 
 
-.software-area .container {
+.software-area .rounded {
   background-color: #ffffff;
+  padding: 10px;
 }
 
 .software-area .container h6 {
@@ -1498,71 +1496,141 @@ header label {
 /*  ======== Clients section end ======== */
 /*   ======== recent section start ======== */
 
-.recent-news-area .recent-news-card {
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 8px rgba(190, 195, 203, 0.2784313725);
-  margin: 4px;
+/* Container Reset */
+.recent-news-area .container {
+    max-width: 1320px;
 }
 
-.recent-news-area .recent-news-card .recent-news-img {
-  width: 100%;
-  height: 200px;
+/* Card Container */
+.recent-news-card {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Keeps image zoom inside borders */
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
 }
 
-.recent-news-area .recent-news-card .recent-news-img img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
+/* Hover Effect: Lift Card */
+.recent-news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: #e0e0e0;
 }
 
-.recent-news-area .recent-news-card .recent-news-content {
-  text-align: start;
-  margin-top: 10px;
+/* Image Wrapper */
+.recent-news-card .recent-news-img {
+    width: 100%;
+    height: 220px; /* Fixed height for uniformity */
+    position: relative;
+    overflow: hidden;
 }
 
-.recent-news-area .recent-news-card .recent-news-content span {
-  color: #000000;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 31px;
+.recent-news-card .recent-news-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-.recent-news-area .recent-news-card .recent-news-content span:hover {
-  color: #795cc9;
+/* Hover Effect: Zoom Image */
+.recent-news-card:hover .recent-news-img img {
+    transform: scale(1.08);
 }
 
-.recent-news-area .recent-news-card .recent-news-content p {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 28px;
-  margin: 10px 0;
+/* Date Badge Overlay */
+.recent-news-card .date-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #795cc9; /* Your primary color */
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.recent-news-area .recent-news-card .recent-news-btn {
-  text-align: center;
-  margin-top: 10px;
+/* Content Area */
+.recent-news-card .news-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Pushes footer to bottom */
 }
 
-.recent-news-area .recent-news-card .recent-news-btn a {
-  display: inline-block;
-  background: #000000;
-  font-size: 18px;
-  font-weight: 600;
-  color: #FFFFFF;
-  border: 2px solid transparent;
-  line-height: 30px;
-  border-radius: 4px;
-  padding: 4px 24px;
-  text-align: center;
-  transition: all linear 0.2s;
+/* Title */
+.recent-news-card .news-content h4 {
+    margin-bottom: 10px;
 }
 
-.recent-news-area .recent-news-card .recent-news-btn a:hover {
-  color: #FFFFFF;
-  background-color: #795cc9;
+.recent-news-card .news-content h4 a {
+    color: #1C1C1C;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 0.2s;
+    
+    /* Limit to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.recent-news-card .news-content h4 a:hover {
+    color: #795cc9;
+}
+
+/* Paragraph */
+.recent-news-card .news-content p {
+    font-weight: 400;
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    
+    /* Limit to 3 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Footer / Button Area */
+.recent-news-card .news-footer {
+    margin-top: auto; /* Ensures alignment at bottom */
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.recent-news-card .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    color: #1C1C1C;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.recent-news-card .read-more-btn i {
+    margin-left: 8px;
+    transition: margin-left 0.2s;
+    font-size: 12px;
+}
+
+.recent-news-card .read-more-btn:hover {
+    color: #795cc9;
+}
+
+.recent-news-card .read-more-btn:hover i {
+    margin-left: 12px;
 }
 
 /* ======== recent section end ======== */
@@ -1595,8 +1663,7 @@ header label {
 }
 
 .subscribe-area .subscribe-content {
-  padding-top: 25%;
-  padding-left: 70px;
+
 }
 
 .subscribe-area .subscribe-content p {
@@ -1608,7 +1675,7 @@ header label {
 
 .subscribe-area .subscribe-content form {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
   height: 45px;
   margin-top: 50px;
 }
@@ -1657,7 +1724,7 @@ header label {
 }
 
 .footer-area .container .footer-content {
-  padding: 30px 0;
+  padding: 60px 0;
 }
 
 .footer-area .container .footer-content .footer-widget a .footer-logo {
@@ -4377,7 +4444,6 @@ header label {
   color: #5092dd;
   line-height: 35px;
   margin-bottom: 0;
-  cursor: pointer;
   transition: all linear 0.2s;
 }
 
@@ -4495,7 +4561,6 @@ header label {
   font-weight: 700;
   font-size: 40px;
   line-height: 65px;
-  cursor: pointer;
   transition: all linear 0.2s;
 }
 
@@ -4509,7 +4574,6 @@ header label {
   font-size: 40px;
   line-height: 65px;
   color: #5092dd;
-  cursor: pointer;
   transition: all linear 0.2s;
 }
 

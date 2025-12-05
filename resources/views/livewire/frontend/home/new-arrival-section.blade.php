@@ -1,4 +1,4 @@
-<section class="new-arrival-area bg-area py-4">
+<section class="new-arrival-area bg-area">
     <div class="container">
         <h2 class="new-arrival-heading common-heading mb-4">New Arrival</h2>
         <div class="row g-3">

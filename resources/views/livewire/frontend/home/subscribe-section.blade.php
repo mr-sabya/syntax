@@ -1,4 +1,4 @@
-<section class="subscribe-area bg-area">
+<section class="subscribe-area bg-area bg-color">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -7,7 +7,7 @@
                     <img class="syn-im" src="{{ url('assets/frontend/images/subscribe.png') }}" alt="subscribe">
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 d-flex align-items-center">
                 <div class="subscribe-content">
                     <h2 class="subscribe-heading section-heading">Subscribe
                         <span>Our</span> News

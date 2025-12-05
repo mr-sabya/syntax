@@ -4,3 +4,8 @@
     justify-content: space-between;
     height: 100%; /* or any height */
 }
+
+
+.bg-color{
+    background: #b4edfa;
+}
