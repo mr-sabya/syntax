@@ -1,6 +1,5 @@
-{{-- Only render if the specific category exists --}}
-@if($category)
-<div class="gadget-area bg-area">
+<section class="gadget-area bg-area">
+    @if($category)
     <div class="container">
         <div class="row">
             <!-- Left Banner Section: Category Info -->
@@ -59,5 +58,5 @@
             </div>
         </div>
     </div>
-</div>
-@endif
+    @endif
+</section>

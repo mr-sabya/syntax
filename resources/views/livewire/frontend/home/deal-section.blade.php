@@ -1,62 +1,61 @@
-<div>
+<section class="deals-area bg-area">
     @if($deal)
-    <section class="deals-area bg-area">
-        <div class="container">
-            <div class="deals-wrapper">
-                <div class="row">
-                    <!-- Left Side: Deal Info & Countdown -->
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="counter-wrapper">
-                            <div class="counter-text">
-                                <h2 id="headline">Deals and offers</h2>
-                                <p id="decribe">{{ $deal->name }}</p>
-                            </div>
+    <div class="container">
+        <div class="deals-wrapper">
+            <div class="row">
+                <!-- Left Side: Deal Info & Countdown -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="counter-wrapper">
+                        <div class="counter-text">
+                            <h2 id="headline">Deals and offers</h2>
+                            <p id="decribe">{{ $deal->name }}</p>
+                        </div>
 
-                            <!-- Pass the expiration date to JS via data-date attribute -->
-                            <div id="countdown" data-date="{{ $deal->expires_at ? $deal->expires_at->format('Y/m/d H:i:s') : '' }}">
-                                <ul>
-                                    <li><span id="days">00</span>days</li>
-                                    <li><span id="hours">00</span>Hour</li>
-                                    <li><span id="minutes">00</span>Min</li>
-                                    <li><span id="seconds">00</span>Sec</li>
-                                </ul>
-                            </div>
+                        <!-- Pass the expiration date to JS via data-date attribute -->
+                        <div id="countdown" data-date="{{ $deal->expires_at ? $deal->expires_at->format('Y/m/d H:i:s') : '' }}">
+                            <ul>
+                                <li><span id="days">00</span>days</li>
+                                <li><span id="hours">00</span>Hour</li>
+                                <li><span id="minutes">00</span>Min</li>
+                                <li><span id="seconds">00</span>Sec</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Right Side: Product Slider -->
-                    <div class="col-lg-9 col-md-9 col-sm-12">
-                        <div class="items">
-                            @forelse($deal->products as $product)
-                            <div class="item">
-                                {{-- Adjust route name based on your routes (e.g., product.detail) --}}
-                                <a href="{{ url('product/'.$product->slug) }}">
-                                    <div class="deals-img">
-                                        {{-- Fallback image logic --}}
-                                        <img src="{{ $product->thumbnail_image_path ? url('storage/' . $product->thumbnail_image_path) : asset('assets/frontend/images/no-image.png') }}"
-                                            alt="{{ $product->name }}">
-                                    </div>
-                                    <h2>{{ Str::limit($product->name, 10) }}</h2>
+                <!-- Right Side: Product Slider -->
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="items">
+                        @forelse($deal->products as $product)
+                        <div class="item">
+                            {{-- Adjust route name based on your routes (e.g., product.detail) --}}
+                            <a href="{{ url('product/'.$product->slug) }}">
+                                <div class="deals-img">
+                                    {{-- Fallback image logic --}}
+                                    <img src="{{ $product->thumbnail_image_path ? url('storage/' . $product->thumbnail_image_path) : asset('assets/frontend/images/no-image.png') }}"
+                                        alt="{{ $product->name }}">
+                                </div>
+                                <h2>{{ Str::limit($product->name, 10) }}</h2>
 
-                                    {{-- Dynamic Discount Label --}}
-                                    @if($deal->type == 'percentage')
-                                    <span>-{{ number_format($deal->value, 0) }}%</span>
-                                    @elseif($deal->type == 'fixed')
-                                    <span>Save ${{ number_format($deal->value, 0) }}</span>
-                                    @endif
-                                </a>
-                            </div>
-                            @empty
-                            <div class="item">
-                                <p>No products available for this deal.</p>
-                            </div>
-                            @endforelse
+                                {{-- Dynamic Discount Label --}}
+                                @if($deal->type == 'percentage')
+                                <span>-{{ number_format($deal->value, 0) }}%</span>
+                                @elseif($deal->type == 'fixed')
+                                <span>Save ${{ number_format($deal->value, 0) }}</span>
+                                @endif
+                            </a>
                         </div>
+                        @empty
+                        <div class="item">
+                            <p>No products available for this deal.</p>
+                        </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
 
     <!-- Countdown Script -->
     <script>
@@ -96,4 +95,4 @@
         });
     </script>
     @endif
-</div>
+</section>

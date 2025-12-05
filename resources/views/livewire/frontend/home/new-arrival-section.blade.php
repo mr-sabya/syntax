@@ -1,128 +1,197 @@
-<section class="new-arrival-area bg-area">
+<section class="new-arrival-area bg-area py-4">
     <div class="container">
-        <h2 class="new-arrival-heading common-heading">new arrival</h2>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-12">
-                <div class="new-arrival">
+        <h2 class="new-arrival-heading common-heading mb-4">New Arrival</h2>
+        <div class="row g-3">
+            
+            <!-- Left Banner Column -->
+            <div class="col-lg-3 col-md-12">
+                <div class="new-arrival-banner">
                     <img src="{{ url('assets/frontend/images/new arrival.png') }}" alt="new arrival">
-                    <div class="text-buttton">
-                        <h2>Consumer electronics and gadgets</h2>
-                        <a href="#">
-                            <button>source now</button>
-                        </a>
+                    <div class="banner-content">
+                        <h3>Consumer electronics and gadgets</h3>
+                        <a href="#" class="btn-source">Source Now</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-12">
-                <div class="new-arrival-wrapper">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-12">
-                            <a class="over" href="product-detail.html">
-                                <div class="product">
-                                    <img src="{{ url('assets/frontend/images/galaxy-2.png') }}" alt="galaxy-2">
-                                    <h3>Galaxy M13(4GB|64GB)</h3>
-                                    <h5>₹10499 <span><del>14999</del></span></h5>
-                                    <samp>Save-₹4000</samp>
-                                    <div class="discount">
-                                        <h2>56% <br>OFF</h2>
-                                    </div>
-                                </div>
+
+            <!-- Right Product Grid Column -->
+            <div class="col-lg-9 col-md-12">
+                <div class="row g-3">
+                    
+                    <!-- Product Item 1 -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="product-card">
+                            <div class="discount-badge">
+                                <span>56%</span>
+                                <small>OFF</small>
+                            </div>
+                            
+                            <!-- Link on Image -->
+                            <a href="product-detail.html" class="img-wrap">
+                                <img src="{{ url('assets/frontend/images/galaxy-2.png') }}" alt="galaxy-2">
                             </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <a href="product-detail.html">
-                                <div class="product">
-                                    <img src="{{ url('assets/frontend/images/galaxy-1.png') }}" alt="galaxy-1">
-                                    <h3>Galaxy M13(4GB|64GB)</h3>
-                                    <h5>₹10499 <span><del>14999</del></span></h5>
-                                    <samp>Save-₹4000</samp>
-                                    <div class="discount">
-                                        <h2>56% <br>OFF</h2>
-                                    </div>
+
+                            <div class="product-info">
+                                <!-- Link on Title -->
+                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
+                                
+                                <div class="price-box">
+                                    <span class="current-price">₹10,499</span>
+                                    <del class="old-price">₹14,999</del>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <a href="product-detail.html">
-                                <div class="product">
-                                    <img src="{{ url('assets/frontend/images/galaxy-3.png') }}" alt="galaxy-3">
-                                    <h3>Galaxy M13(4GB|64GB)</h3>
-                                    <h5>₹10499 <span><del>14999</del></span></h5>
-                                    <samp>Save-₹4000</samp>
-                                    <div class="discount">
-                                        <h2>56% <br>OFF</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <a href="product-detail.html">
-                                <div class="product">
-                                    <img src="{{ url('assets/frontend/images/galaxy-1.png') }}" alt="galaxy-1">
-                                    <h3>Galaxy M13(4GB|64GB)</h3>
-                                    <h5>₹10499 <span><del>14999</del></span></h5>
-                                    <samp>Save-₹4000</samp>
-                                    <div class="discount">
-                                        <h2>56% <br>OFF</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <a href="product-detail.html">
-                                <div class="product">
-                                    <img src="{{ url('assets/frontend/images/galaxy-3.png') }}" alt="galaxy-3">
-                                    <h3>Galaxy M13(4GB|64GB)</h3>
-                                    <h5>₹10499 <span><del>14999</del></span></h5>
-                                    <samp>Save-₹4000</samp>
-                                    <div class="discount">
-                                        <h2>56% <br>OFF</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <a href="product-detail.html">
-                                <div class="product">
-                                    <img src="{{ url('assets/frontend/images/galaxy-1.png') }}" alt="galaxy-1">
-                                    <h3>Galaxy M13(4GB|64GB)</h3>
-                                    <h5>₹10499 <span><del>14999</del></span></h5>
-                                    <samp>Save-₹4000</samp>
-                                    <div class="discount">
-                                        <h2>56% <br>OFF</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <a href="product-detail.html">
-                                <div class="product">
-                                    <img src="{{ url('assets/frontend/images/galaxy-2.png') }}" alt="galaxy-2">
-                                    <h3>Galaxy M13(4GB|64GB)</h3>
-                                    <h5>₹10499 <span><del>14999</del></span></h5>
-                                    <samp>Save-₹4000</samp>
-                                    <div class="discount">
-                                        <h2>56% <br>OFF</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <a href="product-detail.html">
-                                <div class="product">
-                                    <img src="{{ url('assets/frontend/images/galaxy-3.png') }}" alt="galaxy-3">
-                                    <h3>Galaxy M13(4GB|64GB)</h3>
-                                    <h5>₹10499 <span><del>14999</del></span></h5>
-                                    <samp>Save-₹4000</samp>
-                                    <div class="discount">
-                                        <h2>56% <br>OFF</h2>
-                                    </div>
-                                </div>
-                            </a>
+                                <span class="save-text">Save ₹4,000</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- Product Item 2 -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="product-card">
+                            <div class="discount-badge">
+                                <span>56%</span>
+                                <small>OFF</small>
+                            </div>
+                            <a href="product-detail.html" class="img-wrap">
+                                <img src="{{ url('assets/frontend/images/galaxy-1.png') }}" alt="galaxy-1">
+                            </a>
+                            <div class="product-info">
+                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
+                                <div class="price-box">
+                                    <span class="current-price">₹10,499</span>
+                                    <del class="old-price">₹14,999</del>
+                                </div>
+                                <span class="save-text">Save ₹4,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 3 -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="product-card">
+                            <div class="discount-badge">
+                                <span>56%</span>
+                                <small>OFF</small>
+                            </div>
+                            <a href="product-detail.html" class="img-wrap">
+                                <img src="{{ url('assets/frontend/images/galaxy-3.png') }}" alt="galaxy-3">
+                            </a>
+                            <div class="product-info">
+                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
+                                <div class="price-box">
+                                    <span class="current-price">₹10,499</span>
+                                    <del class="old-price">₹14,999</del>
+                                </div>
+                                <span class="save-text">Save ₹4,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 4 -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="product-card">
+                            <div class="discount-badge">
+                                <span>56%</span>
+                                <small>OFF</small>
+                            </div>
+                            <a href="product-detail.html" class="img-wrap">
+                                <img src="{{ url('assets/frontend/images/galaxy-1.png') }}" alt="galaxy-1">
+                            </a>
+                            <div class="product-info">
+                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
+                                <div class="price-box">
+                                    <span class="current-price">₹10,499</span>
+                                    <del class="old-price">₹14,999</del>
+                                </div>
+                                <span class="save-text">Save ₹4,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 5 -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="product-card">
+                            <div class="discount-badge">
+                                <span>56%</span>
+                                <small>OFF</small>
+                            </div>
+                            <a href="product-detail.html" class="img-wrap">
+                                <img src="{{ url('assets/frontend/images/galaxy-3.png') }}" alt="galaxy-3">
+                            </a>
+                            <div class="product-info">
+                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
+                                <div class="price-box">
+                                    <span class="current-price">₹10,499</span>
+                                    <del class="old-price">₹14,999</del>
+                                </div>
+                                <span class="save-text">Save ₹4,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 6 -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="product-card">
+                            <div class="discount-badge">
+                                <span>56%</span>
+                                <small>OFF</small>
+                            </div>
+                            <a href="product-detail.html" class="img-wrap">
+                                <img src="{{ url('assets/frontend/images/galaxy-1.png') }}" alt="galaxy-1">
+                            </a>
+                            <div class="product-info">
+                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
+                                <div class="price-box">
+                                    <span class="current-price">₹10,499</span>
+                                    <del class="old-price">₹14,999</del>
+                                </div>
+                                <span class="save-text">Save ₹4,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 7 -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="product-card">
+                            <div class="discount-badge">
+                                <span>56%</span>
+                                <small>OFF</small>
+                            </div>
+                            <a href="product-detail.html" class="img-wrap">
+                                <img src="{{ url('assets/frontend/images/galaxy-2.png') }}" alt="galaxy-2">
+                            </a>
+                            <div class="product-info">
+                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
+                                <div class="price-box">
+                                    <span class="current-price">₹10,499</span>
+                                    <del class="old-price">₹14,999</del>
+                                </div>
+                                <span class="save-text">Save ₹4,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 8 -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="product-card">
+                            <div class="discount-badge">
+                                <span>56%</span>
+                                <small>OFF</small>
+                            </div>
+                            <a href="product-detail.html" class="img-wrap">
+                                <img src="{{ url('assets/frontend/images/galaxy-3.png') }}" alt="galaxy-3">
+                            </a>
+                            <div class="product-info">
+                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
+                                <div class="price-box">
+                                    <span class="current-price">₹10,499</span>
+                                    <del class="old-price">₹14,999</del>
+                                </div>
+                                <span class="save-text">Save ₹4,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
