@@ -2,11 +2,11 @@
     <div class="container">
         <h2 class="new-arrival-heading common-heading mb-4">New Arrival</h2>
         <div class="row g-3">
-            
-            <!-- Left Banner Column -->
+
+            <!-- Left Banner Column (Static for now, can be made dynamic via a Banner Model) -->
             <div class="col-lg-3 col-md-12">
                 <div class="new-arrival-banner">
-                    <img src="{{ url('assets/frontend/images/new arrival.png') }}" alt="new arrival">
+                    <img src="{{ asset('assets/frontend/images/new arrival.png') }}" alt="new arrival">
                     <div class="banner-content">
                         <h3>Consumer electronics and gadgets</h3>
                         <a href="#" class="btn-source">Source Now</a>
@@ -17,179 +17,67 @@
             <!-- Right Product Grid Column -->
             <div class="col-lg-9 col-md-12">
                 <div class="row g-3">
-                    
-                    <!-- Product Item 1 -->
+
+                    @forelse ($products as $product)
+                    @php
+                    // Calculate Discount Logic
+                    $hasDiscount = $product->compare_at_price > $product->price;
+                    $discountPercentage = 0;
+                    $saveAmount = 0;
+
+                    if ($hasDiscount) {
+                    $saveAmount = $product->compare_at_price - $product->price;
+                    $discountPercentage = round(($saveAmount / $product->compare_at_price) * 100);
+                    }
+                    @endphp
+
+                    <!-- Product Item -->
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                         <div class="product-card">
+
+                            {{-- Discount Badge --}}
+                            @if($hasDiscount)
                             <div class="discount-badge">
-                                <span>56%</span>
+                                <span>{{ $discountPercentage }}%</span>
                                 <small>OFF</small>
                             </div>
-                            
+                            @endif
+
                             <!-- Link on Image -->
-                            <a href="product-detail.html" class="img-wrap">
-                                <img src="{{ url('assets/frontend/images/galaxy-2.png') }}" alt="galaxy-2">
+                            {{-- Assuming you have a route named 'product.detail' --}}
+                            <a href="#" class="img-wrap">
+                                {{-- Use the accessor created in Product Model --}}
+                                <img src="{{ url('storage/' . $product->thumbnail_image_path) }}" alt="{{ $product->name }}">
                             </a>
 
                             <div class="product-info">
                                 <!-- Link on Title -->
-                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
-                                
-                                <div class="price-box">
-                                    <span class="current-price">₹10,499</span>
-                                    <del class="old-price">₹14,999</del>
-                                </div>
-                                <span class="save-text">Save ₹4,000</span>
-                            </div>
-                        </div>
-                    </div>
+                                <h4>
+                                    <a href="#">
+                                        {{ Str::limit($product->name, 40) }}
+                                    </a>
+                                </h4>
 
-                    <!-- Product Item 2 -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="product-card">
-                            <div class="discount-badge">
-                                <span>56%</span>
-                                <small>OFF</small>
-                            </div>
-                            <a href="product-detail.html" class="img-wrap">
-                                <img src="{{ url('assets/frontend/images/galaxy-1.png') }}" alt="galaxy-1">
-                            </a>
-                            <div class="product-info">
-                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
                                 <div class="price-box">
-                                    <span class="current-price">₹10,499</span>
-                                    <del class="old-price">₹14,999</del>
+                                    <span class="current-price">₹{{ number_format($product->price) }}</span>
+                                    @if($hasDiscount)
+                                    <del class="old-price">₹{{ number_format($product->compare_at_price) }}</del>
+                                    @endif
                                 </div>
-                                <span class="save-text">Save ₹4,000</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Product Item 3 -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="product-card">
-                            <div class="discount-badge">
-                                <span>56%</span>
-                                <small>OFF</small>
-                            </div>
-                            <a href="product-detail.html" class="img-wrap">
-                                <img src="{{ url('assets/frontend/images/galaxy-3.png') }}" alt="galaxy-3">
-                            </a>
-                            <div class="product-info">
-                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
-                                <div class="price-box">
-                                    <span class="current-price">₹10,499</span>
-                                    <del class="old-price">₹14,999</del>
-                                </div>
-                                <span class="save-text">Save ₹4,000</span>
+                                @if($hasDiscount)
+                                <span class="save-text">Save ₹{{ number_format($saveAmount) }}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
-
-                    <!-- Product Item 4 -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="product-card">
-                            <div class="discount-badge">
-                                <span>56%</span>
-                                <small>OFF</small>
-                            </div>
-                            <a href="product-detail.html" class="img-wrap">
-                                <img src="{{ url('assets/frontend/images/galaxy-1.png') }}" alt="galaxy-1">
-                            </a>
-                            <div class="product-info">
-                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
-                                <div class="price-box">
-                                    <span class="current-price">₹10,499</span>
-                                    <del class="old-price">₹14,999</del>
-                                </div>
-                                <span class="save-text">Save ₹4,000</span>
-                            </div>
+                    @empty
+                    <div class="col-12">
+                        <div class="alert alert-light text-center">
+                            No new arrivals at the moment.
                         </div>
                     </div>
-
-                    <!-- Product Item 5 -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="product-card">
-                            <div class="discount-badge">
-                                <span>56%</span>
-                                <small>OFF</small>
-                            </div>
-                            <a href="product-detail.html" class="img-wrap">
-                                <img src="{{ url('assets/frontend/images/galaxy-3.png') }}" alt="galaxy-3">
-                            </a>
-                            <div class="product-info">
-                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
-                                <div class="price-box">
-                                    <span class="current-price">₹10,499</span>
-                                    <del class="old-price">₹14,999</del>
-                                </div>
-                                <span class="save-text">Save ₹4,000</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Item 6 -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="product-card">
-                            <div class="discount-badge">
-                                <span>56%</span>
-                                <small>OFF</small>
-                            </div>
-                            <a href="product-detail.html" class="img-wrap">
-                                <img src="{{ url('assets/frontend/images/galaxy-1.png') }}" alt="galaxy-1">
-                            </a>
-                            <div class="product-info">
-                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
-                                <div class="price-box">
-                                    <span class="current-price">₹10,499</span>
-                                    <del class="old-price">₹14,999</del>
-                                </div>
-                                <span class="save-text">Save ₹4,000</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Item 7 -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="product-card">
-                            <div class="discount-badge">
-                                <span>56%</span>
-                                <small>OFF</small>
-                            </div>
-                            <a href="product-detail.html" class="img-wrap">
-                                <img src="{{ url('assets/frontend/images/galaxy-2.png') }}" alt="galaxy-2">
-                            </a>
-                            <div class="product-info">
-                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
-                                <div class="price-box">
-                                    <span class="current-price">₹10,499</span>
-                                    <del class="old-price">₹14,999</del>
-                                </div>
-                                <span class="save-text">Save ₹4,000</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Item 8 -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="product-card">
-                            <div class="discount-badge">
-                                <span>56%</span>
-                                <small>OFF</small>
-                            </div>
-                            <a href="product-detail.html" class="img-wrap">
-                                <img src="{{ url('assets/frontend/images/galaxy-3.png') }}" alt="galaxy-3">
-                            </a>
-                            <div class="product-info">
-                                <h4><a href="product-detail.html">Galaxy M13 (4GB|64GB)</a></h4>
-                                <div class="price-box">
-                                    <span class="current-price">₹10,499</span>
-                                    <del class="old-price">₹14,999</del>
-                                </div>
-                                <span class="save-text">Save ₹4,000</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
 
                 </div>
             </div>

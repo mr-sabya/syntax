@@ -17,7 +17,7 @@ Route::get('/shop', [App\Http\Controllers\Frontend\ShopController::class, 'index
 Route::get('/category', [App\Http\Controllers\Frontend\CategoryController::class, 'index'])->name('category');
 
 // flash deals page
-Route::get('/flash-deals', [App\Http\Controllers\Frontend\FlashDealController::class, 'index'])->name('flash-deals');
+Route::get('/hot-offers', [App\Http\Controllers\Frontend\HotOffersController::class, 'index'])->name('hot-offers');
 
 // blog page
 Route::get('/blog', [App\Http\Controllers\Frontend\BlogController::class, 'index'])->name('blog');

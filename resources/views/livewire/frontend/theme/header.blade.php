@@ -82,13 +82,10 @@
             <nav class="navber ">
                 <ul>
                     <li>
-                        <a href="product.html" class="menu ">All Product</a>
+                        <a href="{{ route('shop') }}" wire:navigate class="menu ">All Product</a>
                     </li>
                     <li>
-                        <a href="# " class="menu ">Hot offers</a>
-                    </li>
-                    <li>
-                        <a href="# " class="menu ">Projects</a>
+                        <a href="{{ route('hot-offers')}}" wire:navigate class="menu ">Hot offers</a>
                     </li>
                     <li>
                         <a href="software.html" class="menu ">Software</a>
@@ -97,19 +94,11 @@
                         <a href="blog.html" class="menu ">Blog</a>
                     </li>
                     <li>
+                        <a href="blog.html" class="menu ">About</a>
+                    </li>
+                    <li>
                         <a href="contact.html" class="menu ">Contact</a>
                     </li>
-
-                    <!-- laptop drop-down start  -->
-                    <!-- <li>
-                        <select id="input-zone ">
-                            <i class="fa-solid fa-cart-shopping "></i>
-                            <option value=" ">Help</option>
-                            <option value=" ">Help 1</option>
-                            <option value=" ">Help 2</option>
-                            <option value=" ">Help 3</option>
-                        </select>
-                    </li> -->
                 </ul>
                 <ul>
                     <!--  drop-down start  -->

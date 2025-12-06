@@ -5,132 +5,50 @@
             <div class="col-12 mt-2">
                 <div class="items">
 
-                    <!-- Item 1 -->
-                    <div class="item">
-                        <div class="recom-img">
-                            <a href="product-detail.html">
-                                <img src="{{ url('assets/frontend/images/recom-1.png') }}" alt="recom-1">
-                            </a>
+                    @forelse($products as $product)
+                        <div class="item">
+                            <div class="recom-img">
+                                {{-- Link to Product Detail --}}
+                                <a href="#">
+                                    {{-- Use the thumbnail_url accessor --}}
+                                    <img src="{{ url('storage/' . $product->thumbnail_image_path) }}" alt="{{ $product->name }}">
+                                </a>
+                            </div>
+                            
+                            <div class="p-3">
+                                {{-- Price --}}
+                                <h5>${{ number_format($product->price, 2) }}</h5>
+                                
+                                {{-- Title --}}
+                                <h4>
+                                    <a href="#">
+                                        {{ Str::limit($product->name, 25) }}
+                                    </a>
+                                </h4>
+                                
+                                {{-- Short Description --}}
+                                <p class="m-0">
+                                    {{ Str::limit($product->short_description ?? 'Great quality product.', 30) }}
+                                </p>
+                            </div>
+                            
+                            <!-- Hover Overlay -->
+                            <div class="shado">
+                                {{-- Placeholder for Add to Cart Logic --}}
+                                <button type="button" wire:click="$dispatch('addToCart', { productId: {{ $product->id }} })">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                
+                                <p><i class="fas fa-share-alt"></i> Share</p>
+                            </div>
                         </div>
-                        <div class="p-3">
-                            <h5>$10.30</h5>
-                            <h4><a href="product-detail.html">T-shirts with multiple..</a></h4>
-                            <p class="m-0">Lorem ipsum dolor sit amet</p>
+                    @empty
+                        <div class="item">
+                            <div class="p-3 text-center">
+                                <p>No recommendations available.</p>
+                            </div>
                         </div>
-                        <!-- Hover Overlay -->
-                        <div class="shado">
-                            <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <p><i class="fas fa-share-alt"></i> Share</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="item">
-                        <div class="recom-img">
-                            <a href="product-detail.html">
-                                <img src="{{ url('assets/frontend/images/recom-2.png') }}" alt="recom-2">
-                            </a>
-                        </div>
-                        <div class="p-3">
-                            <h5>$10.30</h5>
-                            <h4><a href="product-detail.html">Jeans bag for travel</a></h4>
-                            <p class="m-0">Lorem ipsum dolor sit amet</p>
-                        </div>
-                        <div class="shado">
-                            <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <p><i class="fas fa-share-alt"></i> Share</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="item">
-                        <div class="recom-img">
-                            <a href="product-detail.html">
-                                <img src="{{ url('assets/frontend/images/recom-3.png') }}" alt="recom-3">
-                            </a>
-                        </div>
-                        <div class="p-3">
-                            <h5>$10.30</h5>
-                            <h4><a href="product-detail.html">Blue winter coat</a></h4>
-                            <p class="m-0">Lorem ipsum dolor sit amet</p>
-                        </div>
-                        <div class="shado">
-                            <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <p><i class="fas fa-share-alt"></i> Share</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="item">
-                        <div class="recom-img">
-                            <a href="product-detail.html">
-                                <img src="{{ url('assets/frontend/images/recom-4.png') }}" alt="recom-4">
-                            </a>
-                        </div>
-                        <div class="p-3">
-                            <h5>$10.30</h5>
-                            <h4><a href="product-detail.html">Leather wallet brown</a></h4>
-                            <p class="m-0">Lorem ipsum dolor sit amet</p>
-                        </div>
-                        <div class="shado">
-                            <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <p><i class="fas fa-share-alt"></i> Share</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 5 -->
-                    <div class="item">
-                        <div class="recom-img">
-                            <a href="product-detail.html">
-                                <img src="{{ url('assets/frontend/images/recom-2.png') }}" alt="recom-2">
-                            </a>
-                        </div>
-                        <div class="p-3">
-                            <h5>$10.30</h5>
-                            <h4><a href="product-detail.html">Travel bag for men</a></h4>
-                            <p class="m-0">Lorem ipsum dolor sit amet</p>
-                        </div>
-                        <div class="shado">
-                            <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <p><i class="fas fa-share-alt"></i> Share</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 6 -->
-                    <div class="item">
-                        <div class="recom-img">
-                            <a href="product-detail.html">
-                                <img src="{{ url('assets/frontend/images/recom-2.png') }}" alt="recom-2">
-                            </a>
-                        </div>
-                        <div class="p-3">
-                            <h5>$10.30</h5>
-                            <h4><a href="product-detail.html">Travel bag for men</a></h4>
-                            <p class="m-0">Lorem ipsum dolor sit amet</p>
-                        </div>
-                        <div class="shado">
-                            <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <p><i class="fas fa-share-alt"></i> Share</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 7 -->
-                    <div class="item">
-                        <div class="recom-img">
-                            <a href="product-detail.html">
-                                <img src="{{ url('assets/frontend/images/recom-2.png') }}" alt="recom-2">
-                            </a>
-                        </div>
-                        <div class="p-3">
-                            <h5>$10.30</h5>
-                            <h4><a href="product-detail.html">Travel bag for men</a></h4>
-                            <p class="m-0">Lorem ipsum dolor sit amet</p>
-                        </div>
-                        <div class="shado">
-                            <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <p><i class="fas fa-share-alt"></i> Share</p>
-                        </div>
-                    </div>
+                    @endforelse
 
                 </div>
             </div>

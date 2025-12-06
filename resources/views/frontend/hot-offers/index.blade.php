@@ -2,7 +2,5 @@
 
 @section('content')
 
-
-<livewire:frontend.shop.index />
-
+<livewire:frontend.hot-offer.index />
 @endsection

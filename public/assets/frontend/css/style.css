@@ -1192,6 +1192,7 @@ header label {
 
 .recommended-area .container .items .item .recom-img {
     width: 100%;
+    height: 200px;
 }
 
 .recommended-area .container .items .item .recom-img img {
@@ -2444,7 +2445,7 @@ header label {
 }
 
 .product-price input {
-  width: 70px;
+  width: 120px;
   font-size: 16px;
   font-weight: 400;
   outline: none;
@@ -2624,30 +2625,23 @@ header label {
   font-size: 22px;
   font-weight: 600;
   color: #1C1C1C;
-  padding-top: 10px;
-  padding-left: 10px;
 }
 
 .product-area .container .all-product .product-details-grid .text h4 del {
   font-size: 17px;
   font-weight: 500;
   color: #8B96A5;
-  padding-top: 10px;
-  padding-left: 10px;
 }
 
 .product-area .container .all-product .product-details-grid .text .rating {
-  margin-top: -7px;
-  padding-left: 10px;
+width: 100%;
 }
 
 .product-area .container .all-product .product-details-grid .text .rating ul {
-  float: left;
+  display: flex;
+  gap: 2px;
 }
 
-.product-area .container .all-product .product-details-grid .text .rating ul li {
-  float: left;
-}
 
 .product-area .container .all-product .product-details-grid .text .rating i {
   font-size: 14px;
@@ -2661,11 +2655,8 @@ header label {
 }
 
 .product-area .container .all-product .product-details-grid .text .title {
-  width: 100%;
   font-size: 16px;
   color: #263238;
-  margin-left: 10px;
-  float: left;
 }
 
 .product-area .container .all-product .product-details-grid .text .heart i {
