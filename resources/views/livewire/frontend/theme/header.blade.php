@@ -91,13 +91,13 @@
                         <a href="software.html" class="menu ">Software</a>
                     </li>
                     <li>
-                        <a href="blog.html" class="menu ">Blog</a>
+                        <a href="{{ route('blog')}}" wire:navigate class="menu ">Blog</a>
                     </li>
                     <li>
-                        <a href="blog.html" class="menu ">About</a>
+                        <a href="{{ route('about')}}" wire:navigate class="menu">About</a>
                     </li>
                     <li>
-                        <a href="contact.html" class="menu ">Contact</a>
+                        <a href="{{ route('contact')}}" wire:navigate class="menu ">Contact</a>
                     </li>
                 </ul>
                 <ul>

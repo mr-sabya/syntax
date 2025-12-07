@@ -25,6 +25,9 @@ Route::get('/blog', [App\Http\Controllers\Frontend\BlogController::class, 'index
 // contact page
 Route::get('/contact', [App\Http\Controllers\Frontend\ContactController::class, 'index'])->name('contact');
 
+// about page
+Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
+
 // check middleware
 Route::middleware('auth')->group(function () {
     Route::get('/profile', function () {
