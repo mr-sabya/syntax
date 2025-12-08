@@ -14,7 +14,8 @@ document.addEventListener('livewire:navigated', () => {
 
         // partner section srart
         $('.slick').slick({
-            dots: true,
+            dots: false,
+            arrows: false,
             infinite: true,
             autoplay: true,
             speed: 300,
@@ -49,7 +50,8 @@ document.addEventListener('livewire:navigated', () => {
 
         // clients section start
         $('.clients').slick({
-            dots: true,
+            dots: false,
+            arrows: false,
             infinite: true,
             autoplay: true,
             speed: 300,
