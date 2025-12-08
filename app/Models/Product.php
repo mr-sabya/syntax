@@ -264,9 +264,20 @@ class Product extends Model
      * Get the main thumbnail image URL for the product.
      */
     // Add this accessor for convenience
+    /**
+     * Get the main thumbnail image URL for the product.
+     */
     public function getThumbnailUrlAttribute()
     {
-        return $this->thumbnail_image_path ? Storage::disk('public')->url($this->thumbnail_image_path) : null;
+        // If an image path exists, return the full URL using the storage folder
+        if ($this->thumbnail_image_path) {
+            return url('storage/' . $this->thumbnail_image_path);
+        }
+
+        // Optional: Return a default placeholder image if no thumbnail exists
+        // return asset('assets/frontend/images/no-image.png');
+
+        return null;
     }
 
 

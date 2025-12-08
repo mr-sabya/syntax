@@ -3,15 +3,17 @@
 use Illuminate\Support\Facades\Route;
 
 // login route for admins
-Route::get('login', function () {
-    return 'login page';
-})->name('login');
+Route::get('login', [App\Http\Controllers\Frontend\AuthController::class, 'login'])->name('login');
+Route::get('register', [App\Http\Controllers\Frontend\AuthController::class, 'register'])->name('register');
 
 // home page
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
 
 // shop page
 Route::get('/shop', [App\Http\Controllers\Frontend\ShopController::class, 'index'])->name('shop');
+
+// product show
+Route::get('/product/{slug}', [App\Http\Controllers\Frontend\ProductController::class, 'show'])->name('product.show');
 
 // category page
 Route::get('/category', [App\Http\Controllers\Frontend\CategoryController::class, 'index'])->name('category');
@@ -30,9 +32,7 @@ Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'ind
 
 // check middleware
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', function () {
-        return 'admin dashboard';
-    })->name('profile');
+    Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'profile'])->name('profile');
 });
 
 

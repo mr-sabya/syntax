@@ -29,7 +29,7 @@
                         @forelse($deal->products as $product)
                         <div class="item">
                             {{-- Adjust route name based on your routes (e.g., product.detail) --}}
-                            <a href="{{ url('product/'.$product->slug) }}">
+                            <a href="{{ route('product.show', $product->slug) }}" wire:navigate>
                                 <div class="deals-img">
                                     {{-- Fallback image logic --}}
                                     <img src="{{ $product->thumbnail_image_path ? url('storage/' . $product->thumbnail_image_path) : asset('assets/frontend/images/no-image.png') }}"

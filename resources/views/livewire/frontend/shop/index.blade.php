@@ -201,7 +201,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="product-details-grid mt-3">
                             <div class="img">
-                                <a href="#">
+                                <a href="{{ route('product.show', $product->slug) }}" wire:navigate>
                                     @if($product->thumbnail_image_path)
                                     <img src="{{ url('storage/' . $product->thumbnail_image_path) }}" alt="{{ $product->name }}">
                                     @else
@@ -233,7 +233,7 @@
 
 
                                 <p class="title">
-                                    <a href="#" class="text-dark text-decoration-none">
+                                    <a href="{{ route('product.show', $product->slug) }}" wire:navigate class="text-dark text-decoration-none">
                                         {{ Str::limit($product->name, 40) }}
                                     </a>
                                 </p>

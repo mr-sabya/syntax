@@ -3,7 +3,7 @@
         <div class="container">
             <div class="header-top">
                 <div class="header-logo">
-                    <a href="index.html"><img src="{{ url('assets/frontend/images/logo.png') }}" alt=""></a>
+                    <a href="{{ route('home') }}" wire:navigate><img src="{{ url('assets/frontend/images/logo.png') }}" alt=""></a>
                 </div>
                 <div class="header-search d-flex">
                     <input type="text" placeholder="Search">
@@ -13,48 +13,68 @@
                 </div>
 
                 <div class="header-right">
+
+                    @auth
+                    <!-- LOGGED IN USER SEES: Profile, Message, Orders -->
                     <div class="icon-cards">
-                        <div class="header-right-icon">
-                            <a href="#"><i class="fas fa-user"></i></a>
-                        </div>
                         <div class="header-right-content">
-                            <a href="#">
+                            <a href="{{ route('profile') }}" wire:navigate>
+                                <i class="fas fa-user"></i>
                                 <h3>Profile</h3>
                             </a>
                         </div>
                     </div>
+
                     <div class="icon-cards">
-                        <div class="header-right-icon">
-                            <a href="#"><i class="fas fa-envelope"></i></a>
-                        </div>
                         <div class="header-right-content">
                             <a href="#">
+                                <i class="fas fa-envelope"></i>
                                 <h3>Message</h3>
                             </a>
                         </div>
                     </div>
-                    <div class="icon-cards">
-                        <div class="header-right-icon">
 
-                            <a href="#"><i class="fas fa-heart"></i></a>
-                        </div>
+                    <div class="icon-cards">
                         <div class="header-right-content">
-                            <a href="#">
-                                <h3>Order</h3>
+                            {{-- Assuming this links to Orders history --}}
+                            <a href="#" wire:click="$dispatch('switchTab', { tab: 'orders' })">
+                                <i class="fas fa-box-open"></i> {{-- Changed icon to Box for Orders --}}
+                                <h3>Orders</h3>
+                            </a>
+                        </div>
+                    </div>
+
+                    @else
+                    <!-- GUEST SEES: Login, Wishlist -->
+                    <div class="icon-cards">
+                        <div class="header-right-content">
+                            <a href="{{ route('login') }}" wire:navigate>
+                                <i class="fas fa-sign-in-alt"></i>
+                                <h3>Login</h3>
                             </a>
                         </div>
                     </div>
 
                     <div class="icon-cards">
-                        <div class="header-right-icon">
-                            <a href="#"><i class="fas fa-cart-plus"></i></a>
-                        </div>
                         <div class="header-right-content">
                             <a href="#">
+                                <i class="fas fa-heart"></i>
+                                <h3>Wishlist</h3>
+                            </a>
+                        </div>
+                    </div>
+                    @endauth
+
+                    <!-- ALWAYS VISIBLE: Cart -->
+                    <div class="icon-cards">
+                        <div class="header-right-content">
+                            <a href="#">
+                                <i class="fas fa-cart-plus"></i>
                                 <h3>My Cart</h3>
                             </a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

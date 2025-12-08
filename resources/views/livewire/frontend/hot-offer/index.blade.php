@@ -38,7 +38,7 @@
                         @forelse($deal->products as $product)
                         <div class="item">
                             {{-- Product Link --}}
-                            <a href="##">
+                            <a href="{{ route('product.show', $product->slug) }}" wire:navigate>
                                 <div class="deals-img">
                                     @if($product->thumbnail_image_path)
                                     <img src="{{ url('storage/' . $product->thumbnail_image_path) }}" alt="{{ $product->name }}">
@@ -52,11 +52,11 @@
                                 {{-- Dynamic Discount Label --}}
                                 <div class="discount-label text-center mt-2">
                                     @if($deal->type == 'percentage')
-                                    <span class="badge bg-danger">
+                                    <span class="badge bg-danger text-white">
                                         -{{ number_format($deal->value, 0) }}%
                                     </span>
                                     @elseif($deal->type == 'fixed')
-                                    <span class="badge bg-danger">
+                                    <span class="badge bg-danger text-white">
                                         Save ${{ number_format($deal->value, 0) }}
                                     </span>
                                     @endif

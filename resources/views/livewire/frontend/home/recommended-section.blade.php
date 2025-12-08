@@ -9,7 +9,7 @@
                         <div class="item">
                             <div class="recom-img">
                                 {{-- Link to Product Detail --}}
-                                <a href="#">
+                                <a href="{{ route('product.show', $product->slug) }}" wire:navigate>
                                     {{-- Use the thumbnail_url accessor --}}
                                     <img src="{{ url('storage/' . $product->thumbnail_image_path) }}" alt="{{ $product->name }}">
                                 </a>
@@ -21,7 +21,7 @@
                                 
                                 {{-- Title --}}
                                 <h4>
-                                    <a href="#">
+                                    <a href="{{ route('product.show', $product->slug) }}" wire:navigate>
                                         {{ Str::limit($product->name, 25) }}
                                     </a>
                                 </h4>

@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
     <!-- ======== responsive ======== -->
@@ -36,11 +35,12 @@
 
 
 
-    <script src="{{ asset('assets/frontend/js/jquary.all.2.2.4.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/ckeditor/ckeditor.js') }}"></script>
+    <script data-navigate-once src="{{ asset('assets/frontend/js/jquary.all.2.2.4.js') }}"></script>
+    <script data-navigate-once src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
+    <script data-navigate-once src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/script.js') }}"></script>
+
+    @stack('script')
     @livewireScripts
 </body>
 

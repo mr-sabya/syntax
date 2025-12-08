@@ -26,7 +26,7 @@
                         @forelse($category->products as $product)
                         <div class="items">
                             {{-- Adjust route to your specific product detail route --}}
-                            <a href="{{ url('product/'.$product->slug) }}">
+                            <a href="{{ route('product.show', $product->slug) }}" wire:navigate>
                                 <h5>{{ Str::limit($product->name, 20) }}</h5>
 
                                 <div class="price">

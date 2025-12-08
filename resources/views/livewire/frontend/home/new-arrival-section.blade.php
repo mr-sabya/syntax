@@ -45,7 +45,7 @@
 
                             <!-- Link on Image -->
                             {{-- Assuming you have a route named 'product.detail' --}}
-                            <a href="#" class="img-wrap">
+                            <a href="{{ route('product.show', $product->slug) }}" wire:navigate class="img-wrap">
                                 {{-- Use the accessor created in Product Model --}}
                                 <img src="{{ url('storage/' . $product->thumbnail_image_path) }}" alt="{{ $product->name }}">
                             </a>
@@ -53,7 +53,7 @@
                             <div class="product-info">
                                 <!-- Link on Title -->
                                 <h4>
-                                    <a href="#">
+                                    <a href="{{ route('product.show', $product->slug) }}" wire:navigate>
                                         {{ Str::limit($product->name, 40) }}
                                     </a>
                                 </h4>
