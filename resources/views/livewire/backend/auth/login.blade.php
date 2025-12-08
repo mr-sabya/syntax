@@ -1,7 +1,7 @@
 <div class="login-container d-flex align-items-center justify-content-center">
     <div class="login-card p-4 p-md-5 rounded shadow-lg text-center">
         <div class="mb-4">
-            <span class="login-logo fs-3"><i class="bi bi-person-circle"></i></span>
+            <img src="{{ asset('assets/frontend/images/logo.png') }}" alt="" style="width: 200px;">
         </div>
         <h2 class="mb-3 fw-bold">Welcome Back!</h2>
         <p class="text-muted mb-4">Please log in to your account</p>

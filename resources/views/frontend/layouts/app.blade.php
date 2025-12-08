@@ -4,7 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    @if(Route::is('home'))
+    <title>Syntax Corporation | Your Trusted Partner</title>
+    @else
+    <title>@yield('title') - Syntax Corporation</title>
+    @endif
+
+    <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favicon.png') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/all.min.css') }}">

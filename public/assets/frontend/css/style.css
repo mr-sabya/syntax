@@ -362,12 +362,16 @@ p.text {
 }
 
 .header-top-area .header-top .header-logo {
-  height: 170px;
+  width: 200px;
+}
+
+.header-top-area .header-top .header-logo a {
+  width: 100% !important;
+  display: block;
 }
 
 .header-top-area .header-top .header-logo img {
-  width: auto;
-  height: 100%;
+  width: 100%;
 }
 
 .header-top-area .header-top .header-search {

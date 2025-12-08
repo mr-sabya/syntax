@@ -108,7 +108,7 @@
                         <a href="{{ route('hot-offers')}}" wire:navigate class="menu ">Hot offers</a>
                     </li>
                     <li>
-                        <a href="software.html" class="menu ">Software</a>
+                        <a href="#" class="menu ">Software</a>
                     </li>
                     <li>
                         <a href="{{ route('blog')}}" wire:navigate class="menu ">Blog</a>
@@ -124,7 +124,6 @@
                     <!--  drop-down start  -->
                     <li>
                         <select id="input-zone ">
-                            <option value=" ">Bangla</option>
                             <option value=" ">English</option>
                         </select>
                     </li>
@@ -134,10 +133,6 @@
                     <li>
                         <select id="input-zone ">
                             <option value=" ">Bangladesh</option>
-                            <option value=" ">India</option>
-                            <option value=" ">China</option>
-                            <option value=" ">Japan</option>
-                            <option value=" ">Indoneshia</option>
                         </select>
                     </li>
                 </ul>

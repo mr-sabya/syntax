@@ -4,7 +4,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="copyright-text">
                     <p>
-                        @ copyright 2024 <a href="#">Syntax Corporation</a> || <a href="https://gainsit.com/" target="_blank">Developed by Gains IT</a>
+                        @ copyright 2025 <a href="#">Syntax Corporation</a> || <a href="https://gainsit.com/" target="_blank">Developed by Gains IT</a>
                     </p>
                 </div>
             </div>
