@@ -1356,6 +1356,10 @@
     #menu-bar:checked~.navber {
         display: initial;
     }
+
+    .mb-header-tab .mb-header-logo {
+        height: 48px;
+    }
     .mb-header-tab {
         display: flex;
         position: fixed;
