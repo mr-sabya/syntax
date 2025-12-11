@@ -12,7 +12,17 @@
                         </div>
 
                         <!-- Login Form -->
-                        <form wire:submit.prevent="login">
+                        <form
+                            x-data="{ 
+                            handleLogin() {
+                                let cart = localStorage.getItem('cart');
+                                // Send data to Livewire property
+                                @this.set('localCartData', cart);
+                                // Call the PHP login method
+                                $wire.login(); 
+                            }
+                        }"
+                            @submit.prevent="handleLogin">
 
                             <!-- Email -->
                             <div class="form-group">

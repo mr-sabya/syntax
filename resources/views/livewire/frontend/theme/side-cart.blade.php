@@ -91,7 +91,7 @@
         </div>
         <div class="row gx-2">
             <div class="col-6"><a href="{{ route('cart') }}" wire:navigate class="btn btn-outline-dark w-100">View Cart</a></div>
-            <div class="col-6"><a href="#" class="btn btn-dark w-100">Checkout</a></div>
+            <div class="col-6"><a href="{{ route('checkout') }}" wire:navigate class="btn btn-dark w-100">Checkout</a></div>
         </div>
     </div>
 

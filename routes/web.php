@@ -36,6 +36,8 @@ Route::get('/cart', [App\Http\Controllers\Frontend\CartController::class, 'index
 // check middleware
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'profile'])->name('profile');
+
+    Route::get('/checkout', [App\Http\Controllers\Frontend\CheckoutController::class, 'index'])->name('checkout');
 });
 
 

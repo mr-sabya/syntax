@@ -101,6 +101,22 @@
             });
         });
     </script>
+
+    <!-- Check if session has the clear flag -->
+    @if(session('clear_guest_cart'))
+    <script>
+        document.addEventListener("livewire:navigated", function() {
+            // Clear the cart from local storage
+            localStorage.removeItem('cart');
+
+            // Dispatch event to update the UI (Nav counters, etc) to show 0/empty 
+            // until the DB cart loads
+            window.dispatchEvent(new CustomEvent('cart-local-updated'));
+
+            console.log('Guest cart synced to database and cleared from local storage.');
+        });
+    </script>
+    @endif
     @livewireScripts
 </body>
 
