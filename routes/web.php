@@ -30,6 +30,9 @@ Route::get('/contact', [App\Http\Controllers\Frontend\ContactController::class, 
 // about page
 Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
 
+// cart page
+Route::get('/cart', [App\Http\Controllers\Frontend\CartController::class, 'index'])->name('cart');
+
 // check middleware
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'profile'])->name('profile');

@@ -81,7 +81,7 @@
                                             </div>
                                         </div>
                                         <!-- Simple visual feedback for active range -->
-                                        <small class="text-muted">Selected: ${{ $priceMin }} - ${{ $priceMax }}</small>
+                                        <small class="text-muted">Selected: ৳{{ $priceMin }} - ৳{{ $priceMax }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +182,14 @@
                     <div class="text">
                         <p><samp>{{ $products->total() }} items</samp> found</p>
                     </div>
-                    <div class="items">
+                    
+                        <div class="items">
+                            <select class="form-select form-select-sm" wire:model.live="perPage">
+                                <option value="9">Show 9</option>
+                                <option value="18">Show 18</option>
+                                <option value="27">Show 27</option>
+                            </select>
+                        
                         <!-- Sorting -->
                         <select class="form-select form-select-sm" style="width: auto;" wire:model.live="sortBy">
                             <option value="latest">Newest Items</option>
@@ -198,50 +205,86 @@
                 <!-- Products Grid -->
                 <div class="row">
                     @forelse($products as $product)
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="product-details-grid mt-3">
-                            <div class="img">
-                                <a href="{{ route('product.show', $product->slug) }}" wire:navigate>
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card product-card h-100 border-0 shadow-sm overflow-hidden position-relative group">
+
+                            <!-- 1. PRODUCT IMAGE AREA -->
+                            <div class="product-img-wrap position-relative bg-light">
+
+                                <!-- Link -->
+                                <a href="{{ route('product.show', $product->slug) }}" wire:navigate class="d-block">
                                     @if($product->thumbnail_image_path)
-                                    <img src="{{ url('storage/' . $product->thumbnail_image_path) }}" alt="{{ $product->name }}">
+                                    <img src="{{ url('storage/' . $product->thumbnail_image_path) }}"
+                                        alt="{{ $product->name }}"
+                                        class="card-img-top product-image">
                                     @else
-                                    <img src="{{ asset('assets/frontend/images/no-image.png') }}" alt="no image">
+                                    <img src="{{ asset('assets/frontend/images/no-image.png') }}"
+                                        alt="no image"
+                                        class="card-img-top product-image">
                                     @endif
                                 </a>
-                            </div>
-                            <div class="text p-3">
-                                <h4>
-                                    ${{ number_format($product->price, 2) }}
-                                    @if($product->compare_at_price > $product->price)
-                                    <del>${{ number_format($product->compare_at_price, 2) }}</del>
-                                    @endif
-                                </h4>
 
-                                {{-- Static Rating (Implement Reviews Later) --}}
-                                <div class="rating">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                        <li><a href="#">
-                                                <p class="rate">4.0</p>
-                                            </a></li>
-                                    </ul>
-                                </div>
+                                <!-- Badge: Sale / Percentage -->
+                                @if($product->compare_at_price > $product->price)
+                                <span class="badge bg-danger position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill shadow-sm">
+                                    -{{ round((($product->compare_at_price - $product->price) / $product->compare_at_price) * 100) }}%
+                                </span>
+                                @endif
 
-
-                                <p class="title">
-                                    <a href="{{ route('product.show', $product->slug) }}" wire:navigate class="text-dark text-decoration-none">
-                                        {{ Str::limit($product->name, 40) }}
-                                    </a>
-                                </p>
-
-                                <button type="button" class="heart border-0 bg-transparent" wire:click="$dispatch('addToWishlist', { id: {{ $product->id }} })">
-                                    <i class="far fa-heart"></i>
+                                <!-- Action: Wishlist (Floating Top Right) -->
+                                <button type="button"
+                                    class="btn btn-light rounded-circle shadow-sm position-absolute top-0 end-0 m-3 btn-wishlist"
+                                    wire:click="$dispatch('addToWishlist', { id: {{ $product->id }} })"
+                                    title="Add to Wishlist">
+                                    <i class="far fa-heart text-danger"></i>
                                 </button>
                             </div>
+
+                            <!-- 2. CARD BODY -->
+                            <div class="card-body d-flex flex-column pt-3 pb-0">
+
+                                <!-- Category (Optional - Placeholder) -->
+                                <small class="text-muted text-uppercase fw-bold mb-1" style="font-size: 10px; letter-spacing: 1px;">
+                                    {{ $product->category->name ?? 'Product' }}
+                                </small>
+
+                                <!-- Title -->
+                                <h5 class="card-title mb-2">
+                                    <a href="{{ route('product.show', $product->slug) }}" wire:navigate class="text-dark text-decoration-none fw-bold stretched-link-fix">
+                                        {{ Str::limit($product->name, 45) }}
+                                    </a>
+                                </h5>
+
+                                <!-- Rating -->
+                                <div class="mb-2 text-warning small">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star text-muted"></i>
+                                    <span class="text-muted ms-1">(4.0)</span>
+                                </div>
+
+                                <!-- Price Row -->
+                                <div class="mt-auto d-flex align-items-center gap-2 mb-3">
+                                    <h5 class="mb-0 fw-bold text-primary">৳{{ number_format($product->price, 2) }}</h5>
+                                    @if($product->compare_at_price > $product->price)
+                                    <small class="text-muted text-decoration-line-through">৳{{ number_format($product->compare_at_price, 2) }}</small>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <!-- 3. FOOTER (Add to Cart) -->
+                            <div class="card-footer bg-white border-0 pb-4 px-3 pt-0">
+                                <!-- Using the component we created earlier -->
+                                <div class="d-grid">
+                                    <livewire:frontend.components.add-to-cart-button
+                                        :productId="$product->id"
+                                        class="btn-outline-dark w-100 fw-semibold"
+                                        text="Add to Cart" />
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     @empty
@@ -258,13 +301,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 mb-12 mt-4 pb-4">
                     <div class="pagination-wrapper d-flex justify-content-between align-items-center">
                         <!-- Per Page Selector -->
-                        <div>
-                            <select class="form-select" wire:model.live="perPage">
-                                <option value="9">Show 9</option>
-                                <option value="18">Show 18</option>
-                                <option value="27">Show 27</option>
-                            </select>
-                        </div>
+                        
 
                         <!-- Laravel Standard Pagination -->
                         <div>

@@ -29,7 +29,7 @@
                         </p>
 
                         <p class="price">
-                            ${{ number_format($related->price, 2) }}
+                            ৳{{ number_format($related->price, 2) }}
                         </p>
                     </div>
                 </div>

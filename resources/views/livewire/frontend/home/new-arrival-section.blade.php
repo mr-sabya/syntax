@@ -59,7 +59,7 @@
                                 </h4>
 
                                 <div class="price-box">
-                                    <span class="current-price">₹{{ number_format($product->price) }}</span>
+                                    <span class="current-price">৳{{ number_format($product->price) }}</span>
                                     @if($hasDiscount)
                                     <del class="old-price">₹{{ number_format($product->compare_at_price) }}</del>
                                     @endif

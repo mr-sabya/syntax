@@ -40,6 +40,15 @@
     <!-- ======== footer section end ============== -->
 
 
+    <!-- 2. The Side Cart -->
+    <div class="offcanvas offcanvas-end side-cart" tabindex="-1" id="sideCart" aria-labelledby="sideCartLabel">
+
+        <!-- 2. The Livewire Component (Dynamic Content) -->
+        <livewire:frontend.theme.side-cart />
+
+    </div>
+
+
 
     <script data-navigate-once src="{{ asset('assets/frontend/js/jquary.all.2.2.4.js') }}"></script>
     <script data-navigate-once src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
@@ -47,6 +56,51 @@
     <script src="{{ asset('assets/frontend/js/script.js') }}"></script>
 
     @stack('script')
+    <script>
+        document.addEventListener('livewire:init', () => {
+            // Listen for the specific Livewire event dispatched from the PHP component
+            Livewire.on('add-to-local-storage', ({
+                data
+            }) => {
+
+                // 1. Get existing cart from Local Storage
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                // 2. Check if product already exists
+                let existingItem = cart.find(item => item.id === data.id);
+
+                if (existingItem) {
+                    // Increment quantity
+                    existingItem.quantity += 1;
+                } else {
+                    // Add new item
+                    cart.push(data);
+                }
+
+                // 3. Save back to Local Storage
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // 4. Dispatch a Window event so your Navbar/Header can update the count immediately
+                window.dispatchEvent(new CustomEvent('cart-local-updated', {
+                    detail: {
+                        cart: cart
+                    }
+                }));
+
+                // Optional: Show an alert/toast
+                alert('Item added to cart (Guest)!');
+                // If you use Toastr/SweetAlert: toastr.success('Added to cart');
+            });
+
+            // Optional: Listen for server-side notifications (Auth user)
+            Livewire.on('notify', ({
+                type,
+                message
+            }) => {
+                alert(message); // Replace with toastr[type](message) if you have it
+            });
+        });
+    </script>
     @livewireScripts
 </body>
 

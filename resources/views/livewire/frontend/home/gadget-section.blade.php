@@ -32,7 +32,7 @@
                                 <div class="price">
                                     <p>From <br>
                                         {{-- Use effective_price to show discounted price if a deal exists --}}
-                                        USD {{ number_format($product->effective_price, 0) }}
+                                        BDT {{ number_format($product->effective_price, 0) }}
 
                                         {{-- Optional: Show strike-through if discounted --}}
                                         @if($product->effective_price < $product->price)

@@ -68,7 +68,7 @@
                     <!-- ALWAYS VISIBLE: Cart -->
                     <div class="icon-cards">
                         <div class="header-right-content">
-                            <a href="#">
+                            <a href="javascript:void(0)" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideCart">
                                 <i class="fas fa-cart-plus"></i>
                                 <h3>My Cart</h3>
                             </a>
