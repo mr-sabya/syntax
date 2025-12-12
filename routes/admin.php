@@ -95,6 +95,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::prefix('website')->name('website.')->group(function () {
         // banners
         Route::get('/banners', [App\Http\Controllers\Backend\WebsiteController::class, 'banners'])->name('banner.index');
+
+        // clients
+        Route::get('/clients', [App\Http\Controllers\Backend\WebsiteController::class, 'clients'])->name('client.index');
+
+        // partners
+        Route::get('/partners', [App\Http\Controllers\Backend\WebsiteController::class, 'partners'])->name('partner.index');
     });
 
     // orders
@@ -128,4 +134,16 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/blog-post/create', [App\Http\Controllers\Backend\Blog\BlogPostController::class, 'create'])->name('post.create');
         Route::get('/blog-post/{id}/edit', [App\Http\Controllers\Backend\Blog\BlogPostController::class, 'edit'])->name('post.edit');
     });
+
+    // software
+    Route::prefix('software')->name('software.')->group(function () {
+        // category
+        Route::get('/category', [App\Http\Controllers\Backend\SoftwareController::class, 'categoryIndex'])->name('category.index');
+
+        // software
+        Route::get('/', [App\Http\Controllers\Backend\SoftwareController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Backend\SoftwareController::class, 'create'])->name('create');
+        Route::get('/{id}/edit', [App\Http\Controllers\Backend\SoftwareController::class, 'edit'])->name('edit');
+    });
+    
 });

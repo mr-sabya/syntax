@@ -9,7 +9,7 @@
                             @forelse($categories as $category)
                             <li class="d-li">
                                 {{-- Adjust the route name ('collections' or 'category') based on your routes file --}}
-                                <a href="{{ url('collections/'.$category->slug) }}">
+                                <a href="{{ url('shop?category='.$category->slug) }}" wire:navigate>
                                     <p class="m-0">{{ $category->name }}</p>
                                 </a>
                             </li>

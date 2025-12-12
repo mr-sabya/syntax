@@ -1351,7 +1351,7 @@ header label {
 
 .software-area .rounded {
   background-color: #ffffff;
-  padding: 10px;
+  padding: 15px;
 }
 
 .software-area .container h6 {
@@ -1396,7 +1396,7 @@ header label {
 
 .software-area .container .template-content h3 {
   display: inline-block;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 700;
   color: #1C1C1C;
   margin: 15px 0px;
@@ -1412,26 +1412,67 @@ header label {
   color: #8B96A5;
 }
 
+/* 1. The Container (Button) */
 .software-area .container .template-content a button {
-  outline: none;
-  border: none;
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Space between text and icon */
+  
+  /* Reset Defaults */
   background-color: transparent;
-  font-size: 24px;
-  font-weight: 700;
+  border: none;
+  outline: none;
+  padding: 10px 0; /* Vertical breathing room */
+  cursor: pointer;
+  
+  /* Typography */
+  font-family: inherit; /* Inherit site font */
+  font-size: 16px; /* Professional standard size */
+  font-weight: 600; /* Semi-bold is more elegant than 700 */
+  text-transform: uppercase; /* Adds premium feel */
+  letter-spacing: 0.5px;
   color: #1C1C1C;
-  margin-bottom: 20px;
+  
+  /* Animation setup */
+  position: relative;
+  transition: color 0.3s ease;
 }
 
+/* 2. The Icon (Arrow) */
 .software-area .container .template-content a button i {
-  padding-left: 10px;
-  font-weight: 700;
   color: #8CB7F5;
-  transition: all linear 0.05s;
+  font-size: 14px; /* Icon slightly smaller than text looks cleaner */
+  transition: transform 0.3s cubic-bezier(0.2, 1, 0.3, 1), color 0.3s ease;
+  padding-left: 0; /* Reset padding, we use gap/transform now */
 }
 
+/* 3. The Professional Underline Effect (Optional but recommended) */
+
+
+/* --- HOVER STATES --- */
+
+/* Text Color Change */
+.software-area .container .template-content a button:hover {
+  color: #000000;
+}
+
+/* Icon Slide & Color Change */
 .software-area .container .template-content a button:hover i {
-  padding-left: 20px;
   color: #FF0000;
+  transform: translateX(6px); /* Smooth slide to the right */
+}
+
+/* Underline Animation */
+.software-area .container .template-content a button:hover::after {
+  width: 100%; /* Expands the line across */
+}
+
+/* Focus State for Accessibility */
+.software-area .container .template-content a button:focus-visible {
+  outline: 2px dashed #8CB7F5;
+  outline-offset: 5px;
+  border-radius: 4px;
 }
 
 .software-area .container .template-content .template-img {

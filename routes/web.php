@@ -24,6 +24,9 @@ Route::get('/hot-offers', [App\Http\Controllers\Frontend\HotOffersController::cl
 // blog page
 Route::get('/blog', [App\Http\Controllers\Frontend\BlogController::class, 'index'])->name('blog');
 
+// blog show page
+Route::get('/blog/{slug}', [App\Http\Controllers\Frontend\BlogController::class, 'show'])->name('blog.show');
+
 // contact page
 Route::get('/contact', [App\Http\Controllers\Frontend\ContactController::class, 'index'])->name('contact');
 
@@ -32,6 +35,10 @@ Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'ind
 
 // cart page
 Route::get('/cart', [App\Http\Controllers\Frontend\CartController::class, 'index'])->name('cart');
+
+// software page
+Route::get('/software', [App\Http\Controllers\Frontend\SoftwareController::class, 'index'])->name('software');
+Route::get('/software/{slug}', [App\Http\Controllers\Frontend\SoftwareController::class, 'show'])->name('software.show');
 
 // check middleware
 Route::middleware('auth')->group(function () {

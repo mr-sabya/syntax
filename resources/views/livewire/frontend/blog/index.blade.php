@@ -25,7 +25,7 @@
 
                         {{-- Limit title or excerpt length to keep grid uniform --}}
                         <h5 class="mt-2">
-                            <a href="#" style="color: inherit; text-decoration: none;">
+                            <a href="{{ route('blog.show', $post->slug) }}" wire:navigate style="color: inherit; text-decoration: none;">
                                 {{ Str::limit($post->title, 40) }}
                             </a>
                         </h5>
@@ -34,7 +34,7 @@
 
                         <div class="recent-news-btn">
                             <p class="m-0">{{ $post->created_at->diffForHumans() }}</p>
-                            <a href="#" class="get-btn">Read <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ route('blog.show', $post->slug) }}" wire:navigate class="get-btn">Read <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>

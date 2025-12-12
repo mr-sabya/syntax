@@ -19,6 +19,8 @@
     <!-- ======== responsive ======== -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/custom.css') }}">
+
+    <link rel="stylesheet" href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
     @livewireStyles
 </head>
 
@@ -39,6 +41,9 @@
     <!-- copyright section end -->
     <!-- ======== footer section end ============== -->
 
+    @livewire('frontend.utilities.whats-app-button')
+    <!-- The Container -->
+    <!-- <div id="WAButton"></div> -->
 
     <!-- 2. The Side Cart -->
     <div class="offcanvas offcanvas-end side-cart" tabindex="-1" id="sideCart" aria-labelledby="sideCartLabel">
@@ -53,6 +58,8 @@
     <script data-navigate-once src="{{ asset('assets/frontend/js/jquary.all.2.2.4.js') }}"></script>
     <script data-navigate-once src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
     <script data-navigate-once src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>
+    <script src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
+
     <script src="{{ asset('assets/frontend/js/script.js') }}"></script>
 
     @stack('script')
@@ -101,7 +108,7 @@
             });
         });
     </script>
-
+    
     <!-- Check if session has the clear flag -->
     @if(session('clear_guest_cart'))
     <script>

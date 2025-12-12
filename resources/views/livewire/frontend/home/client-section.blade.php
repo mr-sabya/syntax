@@ -1,37 +1,26 @@
 <section class="clients-area bg-area">
     <div class="container">
-        <h2 class="section-heading">our Clients</h2>
+        <h2 class="section-heading">Our Clients</h2>
+
         <div class="clients">
+            @forelse($clients as $client)
             <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-1.png') }}" alt="BINA 1">
+                @if($client->website_url)
+                {{-- If URL exists, wrap in a link --}}
+                <a href="{{ $client->website_url }}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ $client->logo_url }}" alt="{{ $client->name }}">
+                </a>
+                @else
+                {{-- Otherwise just show image --}}
+                <img src="{{ $client->logo_url }}" alt="{{ $client->name }}">
+                @endif
             </div>
-            <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-2.png') }}" alt="BINA 2">
+            @empty
+            {{-- Fallback content if no clients are uploaded yet --}}
+            <div class="text-center w-100 py-3">
+                <p class="text-muted">No clients to display.</p>
             </div>
-            <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-3.png') }}" alt="BINA 3">
-            </div>
-            <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-4.png') }}" alt="BINA 4">
-            </div>
-            <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-5.png') }}" alt="BINA 5">
-            </div>
-            <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-1.png') }}" alt="BINA 1">
-            </div>
-            <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-2.png') }}" alt="BINA 2">
-            </div>
-            <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-3.png') }}" alt="BINA 3">
-            </div>
-            <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-4.png') }}" alt="BINA 4">
-            </div>
-            <div class="clients-img">
-                <img src="{{ url('assets/frontend/images/BINA-5.png') }}" alt="BINA 5">
-            </div>
+            @endforelse
         </div>
     </div>
 </section>

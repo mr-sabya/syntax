@@ -150,18 +150,6 @@
                                     <span class="sub-item">Customers</span>
                                 </a>
                             </li>
-                            <!-- investors -->
-                            <li class="{{ request()->routeIs('admin.users.investors.*') ? 'active' : '' }}">
-                                <a href="{{ route('admin.users.investors.index') }}" wire:navigate>
-                                    <span class="sub-item">Investors</span>
-                                </a>
-                            </li>
-                            <!-- vendors -->
-                            <li class="{{ request()->routeIs('admin.users.vendors.*') ? 'active' : '' }}">
-                                <a href="{{ route('admin.users.vendors.index') }}" wire:navigate>
-                                    <span class="sub-item">Vendors</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </li>
@@ -232,34 +220,6 @@
                     </div>
                 </li>
 
-
-                <!-- Investment -->
-                <li class="nav-item {{ request()->routeIs('admin.investment.*') ? 'active submenu' : '' }}">
-                    <a data-bs-toggle="collapse" href="#investmentManagement" class="collapsed" aria-expanded="{{ request()->routeIs('admin.investment.*') ? 'true' : 'false' }}">
-                        <i class="fas fa-hand-holding-usd"></i> <!-- Changed from fa-cubes to fa-hand-holding-usd for Investment -->
-                        <p>Investment</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse {{ request()->routeIs('admin.investment.*') ? 'show' : '' }}" id="investmentManagement">
-                        <ul class="nav nav-collapse">
-                            <!-- projects -->
-                            <li class="{{ request()->routeIs('admin.investment.projects.index') ? 'active' : '' }}">
-                                <a href="{{ route('admin.investment.projects.index') }}" wire:navigate>
-                                    <span class="sub-item">Projects</span>
-                                </a>
-                            </li>
-                            <!-- projects -->
-                            <li class="{{ request()->routeIs('admin.investment.investments.index') ? 'active' : '' }}">
-                                <a href="{{ route('admin.investment.investments.index') }}" wire:navigate>
-                                    <span class="sub-item">Investments</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </li>
-
-
                 <!-- Website -->
                 <li class="nav-item {{ request()->routeIs('admin.website.*') ? 'active submenu' : '' }}">
                     <a data-bs-toggle="collapse" href="#websiteManagement" class="collapsed" aria-expanded="{{ request()->routeIs('admin.website.*') ? 'true' : 'false' }}">
@@ -276,6 +236,46 @@
                                 </a>
                             </li>
 
+                            <!-- clients -->
+                            <li class="{{ request()->routeIs('admin.website.client.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.website.client.index') }}" wire:navigate>
+                                    <span class="sub-item">Clients</span>
+                                </a>
+                            </li>
+
+                            <!-- partners -->
+                            <li class="{{ request()->routeIs('admin.website.partner.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.website.partner.index') }}" wire:navigate>
+                                    <span class="sub-item">Partners</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Software    -->
+                <li class="nav-item {{ request()->routeIs('admin.software.*') ? 'active submenu' : '' }}">
+                    <a data-bs-toggle="collapse" href="#softwareManagement" class="collapsed" aria-expanded="{{ request()->routeIs('admin.software.*') ? 'true' : 'false' }}">
+                        <i class="fas fa-desktop"></i> <!-- Changed from fa-cubes to fa-desktop for Software -->
+                        <p>Software</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse {{ request()->routeIs('admin.software.*') ? 'show' : '' }}" id="softwareManagement">
+                        <ul class="nav nav-collapse">
+                            <!-- category -->
+                            <li class="{{ request()->routeIs('admin.software.category.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.software.category.index') }}" wire:navigate>
+                                    <span class="sub-item">Category</span>
+                                </a>
+                            </li>
+
+                            <!-- software -->
+                            <li class="{{ request()->routeIs('admin.software.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.software.index') }}" wire:navigate>
+                                    <span class="sub-item">Software</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

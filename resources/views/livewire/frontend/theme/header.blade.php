@@ -108,7 +108,7 @@
                         <a href="{{ route('hot-offers')}}" wire:navigate class="menu ">Hot offers</a>
                     </li>
                     <li>
-                        <a href="#" class="menu ">Software</a>
+                        <a href="{{ route('software') }}" wire:navigate class="menu ">Software</a>
                     </li>
                     <li>
                         <a href="{{ route('blog')}}" wire:navigate class="menu ">Blog</a>

@@ -14,7 +14,7 @@ class Index extends Component
     // Filter Properties
     public $selectedCategories = [];
     public $selectedBrands = [];
-    public $selectedRating = null; // New Property for Rating
+    public $selectedRating = null;
     public $priceMin = 0;
     public $priceMax = 5000;
     public $sortBy = 'latest';
@@ -22,10 +22,34 @@ class Index extends Component
 
     protected $paginationTheme = 'bootstrap';
 
+    // Optional: If you want the URL to update dynamically when filters change
+    protected $queryString = [
+        'sortBy' => ['except' => 'latest'],
+        'priceMin' => ['except' => 0],
+        'priceMax' => ['except' => 5000],
+        // We generally don't put selectedCategories here if mapping IDs to Slugs is complex, 
+        // but for basic functionality, we rely on mount().
+    ];
+
     public function mount()
     {
+        // 1. Initialize Price Range
         $this->priceMin = 0;
         $this->priceMax = ceil(Product::max('price') ?? 5000);
+
+        // 2. Handle URL Query Parameter for Category (?category=slug)
+        $categorySlug = request()->query('category');
+
+        if ($categorySlug) {
+            // Find the category ID based on the slug provided in the URL
+            $category = Category::where('slug', $categorySlug)->first();
+
+            if ($category) {
+                // Add the ID to the selection array so the checkbox gets checked
+                // and the render method filters by it.
+                $this->selectedCategories = [$category->id];
+            }
+        }
     }
 
     public function updated($propertyName)
@@ -36,11 +60,14 @@ class Index extends Component
     public function resetFilters()
     {
         $this->reset(['selectedCategories', 'selectedBrands', 'selectedRating', 'sortBy']);
-        
+
         $this->priceMin = 0;
         $this->priceMax = ceil(Product::max('price') ?? 5000);
-        
+
         $this->resetPage();
+
+        // Remove the ?category= parameter from the URL visually (optional)
+        $this->dispatch('url-clean-up');
     }
 
     public function render()
@@ -62,11 +89,10 @@ class Index extends Component
         // 3. Price Filter
         $productsQuery->whereBetween('price', [$this->priceMin, $this->priceMax]);
 
-        // 4. Rating Filter (New Logic)
+        // 4. Rating Filter
         if ($this->selectedRating) {
-            // Filter products where the average of the 'rating' column in the 'reviews' table is >= selectedRating
             $productsQuery->whereRaw(
-                "(SELECT AVG(rating) FROM reviews WHERE reviews.product_id = products.id) >= ?", 
+                "(SELECT AVG(rating) FROM reviews WHERE reviews.product_id = products.id) >= ?",
                 [$this->selectedRating]
             );
         }
@@ -90,8 +116,7 @@ class Index extends Component
         $products = $productsQuery->paginate($this->perPage);
 
         $categories = Category::active()->withCount('products')->get();
-        // Ensure Brand model exists or remove this line
-        $brands = \App\Models\Brand::withCount('products')->get(); 
+        $brands = \App\Models\Brand::withCount('products')->get();
 
         return view('livewire.frontend.shop.index', [
             'products' => $products,

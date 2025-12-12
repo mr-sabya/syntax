@@ -1,47 +1,32 @@
 <section class="partners-area bg-area">
     <div class="container">
-        <h2 class="section-heading">our partners</h2>
+        <h2 class="section-heading">Our Partners</h2>
+
+        {{--
+            NOTE: If you are using a JavaScript library like Slick Slider, 
+            it modifies the DOM after the page loads. 
+            If this Livewire component refreshes, the slider might break.
+            If this component is static (doesn't change after load), this code is perfect.
+        --}}
         <div class="row slick">
+            @forelse($partners as $partner)
             <div class="col-lg-3 col-md-4 col-sm-12">
                 <div class="partner-img">
-                    <img src="{{ url('assets/frontend/images/delta-logo-1.png') }}" alt="delta-logo-1">
+                    @if($partner->website_url)
+                    <a href="{{ $partner->website_url }}" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}">
+                    </a>
+                    @else
+                    <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}">
+                    @endif
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="partner-img">
-                    <img src="{{ url('assets/frontend/images/delta-logo-2.png') }}" alt="delta-logo-2">
-                </div>
+            @empty
+            {{-- Fallback if no partners exist --}}
+            <div class="col-12 text-center">
+                <p class="text-muted">No partners to display.</p>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="partner-img">
-                    <img src="{{ url('assets/frontend/images/delta-logo-3.png') }}" alt="delta-logo-3">
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="partner-img">
-                    <img src="{{ url('assets/frontend/images/delta-logo-4.png') }}" alt="delta-logo-4">
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="partner-img">
-                    <img src="{{ url('assets/frontend/images/delta-logo-1.png') }}" alt="delta-logo-1">
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="partner-img">
-                    <img src="{{ url('assets/frontend/images/delta-logo-2.png') }}" alt="delta-logo-2">
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="partner-img">
-                    <img src="{{ url('assets/frontend/images/delta-logo-3.png') }}" alt="delta-logo-3">
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="partner-img">
-                    <img src="{{ url('assets/frontend/images/delta-logo-4.png') }}" alt="delta-logo-4">
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </section>
