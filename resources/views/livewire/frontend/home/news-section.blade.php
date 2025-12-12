@@ -3,81 +3,54 @@
         <h2 class="common-heading mb-5">Recent News</h2>
         <div class="row g-4">
 
-            <!-- Item 1 -->
+            @forelse($newsPosts as $post)
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="recent-news-card h-100">
-                    <div class="recent-news-img">
-                        <a href="blog.html">
-                            <img src="{{ url('assets/frontend/images/blog_1.jpg') }}" alt="news-1">
-                        </a>
-                        <div class="date-badge">12 Oct</div>
-                    </div>
-                    <div class="news-content">
-                        <h4><a href="blog.html">Coaching & Training</a></h4>
-                        <p>Lorem Ipsum is simply text of the printing and type setting industry.</p>
-                        <div class="news-footer">
-                            <a href="blog.html" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Item 2 -->
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="recent-news-card h-100">
+                    {{-- Image Section --}}
                     <div class="recent-news-img">
-                        <a href="blog.html">
-                            <img src="{{ url('assets/frontend/images/blog_2.jpg') }}" alt="news-1">
+                        <a href="{{ route('blog.show', $post->slug) }}" wire:navigate>
+                            @if($post->image_url)
+                            <img src="{{ $post->image_url }}" alt="{{ $post->title }}">
+                            @else
+                            {{-- Placeholder if no image exists --}}
+                            <img src="{{ asset('assets/frontend/images/blog_1.jpg') }}" alt="Default Image">
+                            @endif
                         </a>
-                        <div class="date-badge">10 Oct</div>
-                    </div>
-                    <div class="news-content">
-                        <h4><a href="blog.html">Digital Partner</a></h4>
-                        <p>Lorem Ipsum is simply text of the printing and type setting industry.</p>
-                        <div class="news-footer">
-                            <a href="blog.html" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Item 3 -->
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="recent-news-card h-100">
-                    <div class="recent-news-img">
-                        <a href="blog.html">
-                            <img src="{{ url('assets/frontend/images/blog_3.jpg') }}" alt="news-2">
-                        </a>
-                        <div class="date-badge">08 Oct</div>
-                    </div>
-                    <div class="news-content">
-                        <h4><a href="blog.html">SEO Optimization</a></h4>
-                        <p>Lorem Ipsum is simply text of the printing and type setting industry.</p>
-                        <div class="news-footer">
-                            <a href="blog.html" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
+                        {{-- Date Badge (e.g., 12 Oct) --}}
+                        <div class="date-badge">
+                            {{ $post->published_at->format('d M') }}
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Item 4 -->
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="recent-news-card h-100">
-                    <div class="recent-news-img">
-                        <a href="blog.html">
-                            <img src="{{ url('assets/frontend/images/blog_4.jpg') }}" alt="news-3">
-                        </a>
-                        <div class="date-badge">05 Oct</div>
-                    </div>
+                    {{-- Content Section --}}
                     <div class="news-content">
-                        <h4><a href="blog.html">Business Growth</a></h4>
-                        <p>Lorem Ipsum is simply text of the printing and type setting industry.</p>
+                        <h4>
+                            <a href="{{ route('blog.show', $post->slug) }}" wire:navigate>
+                                {{ \Illuminate\Support\Str::limit($post->title, 40) }}
+                            </a>
+                        </h4>
+
+                        <p>
+                            {{ \Illuminate\Support\Str::limit($post->excerpt, 80) }}
+                        </p>
+
                         <div class="news-footer">
-                            <a href="blog.html" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ route('blog.show', $post->slug) }}" class="read-more-btn" wire:navigate>
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
+
                 </div>
             </div>
+            @empty
+            {{-- Fallback if no news exists --}}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted">No recent news available.</p>
+            </div>
+            @endforelse
 
         </div>
     </div>

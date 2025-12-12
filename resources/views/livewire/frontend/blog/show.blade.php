@@ -1,7 +1,7 @@
 <div class="blog-single-page blog-area bg-area">
 
     <!-- Header / Breadcrumb Section -->
-    <section class="bg-area py-5 border-bottom">
+    <div class="bg-area py-5 border-bottom">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
@@ -11,7 +11,7 @@
                     </span>
 
                     <!-- Title -->
-                    <h1 class="fw-bold mb-3 display-5">{{ $post->title }}</h1>
+                    <h1 class="section-heading fw-bold mb-3 display-5">{{ $post->title }}</h1>
 
                     <!-- Meta Info -->
                     <div class="text-muted d-flex justify-content-center align-items-center gap-3">
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Main Content & Sidebar -->
     <section class="py-5">
@@ -64,9 +64,9 @@
                         <!-- Share Buttons (Static Example) -->
                         <div class="d-flex align-items-center gap-3 mb-5">
                             <span class="fw-bold">Share:</span>
-                            <a href="#" class="btn btn-sm btn-outline-primary"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="btn btn-sm btn-outline-info"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="btn btn-sm btn-outline-success"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-links"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-links"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-links"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </article>
 
@@ -175,6 +175,21 @@
 
         .content-body ul {
             margin-bottom: 20px;
+        }
+
+        .social-links i {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(190, 195, 203, 0.2784313725);
+            transition: all linear 0.3s;
+        }
+        .fa-whatsapp{
+            background: #25D366;
+            color: #fff;
         }
     </style>
 </div>
