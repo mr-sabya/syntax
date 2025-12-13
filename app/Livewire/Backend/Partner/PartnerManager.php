@@ -43,7 +43,7 @@ class PartnerManager extends Component
         'description' => 'nullable|string|max:1000',
         'website_url' => 'nullable|url|max:255',
         'sort_order' => 'required|integer|min:0',
-        'logo' => 'nullable|image|max:2048',
+        'logo' => 'required|image|max:2048',
         'status' => 'boolean',
         'is_featured' => 'boolean',
     ];

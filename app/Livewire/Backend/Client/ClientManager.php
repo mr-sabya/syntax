@@ -42,7 +42,7 @@ class ClientManager extends Component
         'name' => 'required|string|max:255',
         'website_url' => 'nullable|url|max:255',
         'sort_order' => 'required|integer|min:0',
-        'logo' => 'nullable|image|max:2048', // Max 2MB
+        'logo' => 'required|image|max:2048', // Max 2MB
         'status' => 'boolean',
     ];
 

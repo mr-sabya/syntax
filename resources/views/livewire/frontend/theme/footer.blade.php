@@ -4,27 +4,26 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-12 pe-0">
                     <div class="footer-widget">
-                        <a href="#">
+                        <a href="{{ route('home') }}" wire:navigate>
                             <div class="footer-logo">
-                                <img src="{{ url('assets/frontend/images/logo.png') }}" alt="logo">
+                                <img src="{{ isset($settings['logo']) ? url('storage/' .$settings['logo']) : url('assets/frontend/images/logo.png') }}" alt="logo">
                             </div>
                         </a>
                         <div class="footer-text">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, laboriosam!
+                            <p>{!! $settings['footer_about'] ?? 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, laboriosam!' !!}
                             </p>
                             <ul class="footer-icons social-icons d-flex">
                                 <li>
-                                    <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                    <a href="{{ $settings['facebook'] ?? '#' }}"><i class="fab fa-facebook-f facebook-bg"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                    <a href="{{ $settings['twitter'] ?? '#' }}"><i class="fab fa-twitter twitter-bg"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="fab fa-instagram instagram-bg"></i></a>
+                                    <a href="{{ $settings['instagram'] ?? '#' }}"><i class="fab fa-instagram instagram-bg"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                    <a href="{{ $settings['youtube'] ?? '#' }}"><i class="fab fa-youtube"></i></a>
                                 </li>
 
                             </ul>
@@ -37,10 +36,10 @@
                             <h3>About</h3>
                         </div>
                         <ul class="footer-widget-content">
-                            <li><a href="#">About us</a></li>
+                            <li><a href="{{ route('about') }}" wire:navigate>About us</a></li>
                             <li><a href="#">Privacy policy</a></li>
                             <li><a href="#">Terms and conditions</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="{{ route('contact') }}" wire:navigate>Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,9 +49,9 @@
                             <h3>Partnership</h3>
                         </div>
                         <ul class="footer-widget-content">
-                            <li><a href="#">Our Partners</a></li>
-                            <li><a href="#">Our Clients</a></li>
-                            <li><a href="#">Find store</a></li>
+                            <li><a href="{{ route('partners') }}" wire:navigate>Our Partners</a></li>
+                            <li><a href="{{ route('clients') }}" wire:navigate>Our Clients</a></li>
+                            <li><a href="{{ route('shop') }}" wire:navigate>Find store</a></li>
                         </ul>
                     </div>
                 </div>
@@ -63,8 +62,8 @@
                         </div>
                         <ul class="footer-widget-content">
                             <li><a href="#">Help Center</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="{{ route('contact') }}" wire:navigate>Contact us</a></li>
+                            <li><a href="{{ route('blog') }}" wire:navigate>Blog</a></li>
                         </ul>
                     </div>
                 </div>
@@ -74,8 +73,8 @@
                             <h3>For users</h3>
                         </div>
                         <ul class="footer-widget-content">
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">Register</a></li>
+                            <li><a href="{{ route('login') }}" wire:navigate>Login</a></li>
+                            <li><a href="{{ route('register') }}" wire:navigate>Register</a></li>
                             <li><a href="#">Settings</a></li>
                             <li><a href="#">My Orders</a></li>
                         </ul>

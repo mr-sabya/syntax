@@ -53,6 +53,28 @@
 
     </div>
 
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-4">
+                    <form>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa fa-search"></i>
+                            </span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Search..."
+                                autofocus>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <script data-navigate-once src="{{ asset('assets/frontend/js/jquary.all.2.2.4.js') }}"></script>
@@ -61,6 +83,19 @@
     <script src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
 
     <script src="{{ asset('assets/frontend/js/script.js') }}"></script>
+    <script data-navigate-once>
+        document.addEventListener('livewire:navigated', function() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const navber = document.querySelector('.navber');
+
+            if (!menuBtn || !navber) return;
+
+            menuBtn.addEventListener('click', function() {
+                navber.classList.toggle('show');
+            });
+        });
+    </script>
+
 
     @stack('script')
     <script>
@@ -95,7 +130,7 @@
                 }));
 
                 // Optional: Show an alert/toast
-                alert('Item added to cart (Guest)!');
+                
                 // If you use Toastr/SweetAlert: toastr.success('Added to cart');
             });
 
@@ -108,7 +143,7 @@
             });
         });
     </script>
-    
+
     <!-- Check if session has the clear flag -->
     @if(session('clear_guest_cart'))
     <script>

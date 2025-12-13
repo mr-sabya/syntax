@@ -1804,7 +1804,6 @@ header label {
 
 .footer-area .container .footer-content .footer-widget a .footer-logo {
   width: 150px;
-  height: 46px;
   margin-bottom: 19px;
 }
 
@@ -3529,9 +3528,7 @@ header label {
 }
 
 .related-product-area .container {
-  background-color: #ffffff;
-  border: 1px solid #8B96A5;
-  border-radius: 8px;
+  
 }
 
 .related-product-area .container h2 {
@@ -3542,9 +3539,10 @@ header label {
 }
 
 .related-product-area .container .related-product {
-  box-shadow: 1px 4px 8px #8B96A5;
+  box-shadow: 1px 2px 5px #8B96A5;
   border-radius: 8px;
   margin: 15px 0px;
+  background: #fff;
 }
 
 .related-product-area .container .related-product .product-img {

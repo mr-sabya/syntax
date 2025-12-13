@@ -129,14 +129,14 @@
                                             <livewire:frontend.components.add-to-cart-button
                                                 :productId="$product->id"
                                                 :qty="$quantity"
-                                                class="btn-dark btn-lg w-100"
+                                                class="btn-dark w-100"
                                                 text="Add to Cart" />
                                         </div>
 
                                         <!-- Buy Now Button (Secondary Action) -->
                                         <div class="flex-grow-1">
                                             <button type="button"
-                                                class="btn btn-outline-primary btn-lg w-100"
+                                                class="btn btn-outline-primary w-100"
                                                 wire:click="$dispatch('buyNow', { productId: {{ $product->id }}, qty: {{ $quantity }} })">
                                                 Buy Now
                                             </button>

@@ -11,14 +11,21 @@
                         <i class="fas fa-envelope"></i>
                         <h5>Message</h5>
                     </a>
-                    <a href="#">
+                    <a href="javascript:void(0)" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideCart">
                         <i class="fas fa-cart-plus"></i>
                         <h5>My Cart</h5>
                     </a>
-                    <a href="#">
+                    @auth
+                    <a href="{{ route('profile') }}" wire:navigate>
                         <i class="fa fa-user"></i>
                         <h5>Profile</h5>
                     </a>
+                    @else
+                    <a href="{{ route('login') }}" wire:navigate>
+                        <i class="fas fa-sign-in-alt"></i>
+                        <h5>Login</h5>
+                    </a>
+                    @endauth
                 </div>
             </div>
         </div>

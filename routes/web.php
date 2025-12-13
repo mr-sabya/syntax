@@ -40,6 +40,12 @@ Route::get('/cart', [App\Http\Controllers\Frontend\CartController::class, 'index
 Route::get('/software', [App\Http\Controllers\Frontend\SoftwareController::class, 'index'])->name('software');
 Route::get('/software/{slug}', [App\Http\Controllers\Frontend\SoftwareController::class, 'show'])->name('software.show');
 
+// partners page
+Route::get('/partners', [App\Http\Controllers\Frontend\PartnerController::class, 'index'])->name('partners');
+
+// clients page
+Route::get('/clients', [App\Http\Controllers\Frontend\ClientController::class, 'index'])->name('clients');
+
 // check middleware
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'profile'])->name('profile');

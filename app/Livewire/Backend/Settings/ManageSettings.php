@@ -15,7 +15,7 @@ class ManageSettings extends Component
 
     // Table state
     public $search = '';
-    public $sortField = 'key';
+    public $sortField = 'id';
     public $sortDirection = 'asc';
     public $perPage = 10;
 

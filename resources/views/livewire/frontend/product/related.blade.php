@@ -6,7 +6,7 @@
 
             @forelse($relatedProducts as $related)
             <div class="col-lg-2 col-md-3 col-sm-6 col-6 mb-3">
-                <div class="related-product h-100">
+                <div class="related-product">
                     <div class="product-img">
                         <a href="{{ route('product.show', $related->slug) }}" wire:navigate>
                             @if($related->thumbnail_image_path)

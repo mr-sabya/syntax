@@ -1,12 +1,6 @@
 document.addEventListener('livewire:navigated', () => {
     // ========= top-search start ===========
    
-
-        let search = document.querySelector(".search");
-        search.onclick = function () {
-            document.querySelector(".mbsearch").classList.toggle('active');
-        }
-
     // ========= top-search end ===========
 
     // ========= slide start ===========
@@ -266,4 +260,5 @@ document.addEventListener('livewire:navigated', () => {
     }
 
     //  ========= our-software section end ============ //
+
 });

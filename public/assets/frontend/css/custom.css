@@ -402,3 +402,26 @@
     position: relative;
     z-index: 2;
 }
+
+.menu-btn{
+    display: none;
+}
+
+.search-btn-mb{
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 425px) {
+    .menu-btn{
+        display: inline-block;
+        font-size: 18px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #000000;
+    }
+    
+}
