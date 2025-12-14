@@ -21,6 +21,17 @@ enum PaymentStatus: string
         };
     }
 
+    // --- ADD THIS METHOD ---
+    public function badgeColor(): string
+    {
+        return match ($this) {
+            self::Pending => 'bg-warning',
+            self::Paid => 'bg-success',
+            self::Failed => 'bg-danger',
+            self::Refunded, self::PartiallyRefunded => 'bg-secondary',
+        };
+    }
+
     public static function values(): array
     {
         return array_column(self::cases(), 'value');

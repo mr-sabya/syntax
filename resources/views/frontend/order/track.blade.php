@@ -4,6 +4,6 @@
 
 @section('content')
 
-<livewire:frontend.checkout.index />
+<livewire:frontend.order.track-order />
 
 @endsection

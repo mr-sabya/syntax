@@ -51,6 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'profile'])->name('profile');
 
     Route::get('/checkout', [App\Http\Controllers\Frontend\CheckoutController::class, 'index'])->name('checkout');
+
+    Route::get('/thank-you/{orderId}', [App\Http\Controllers\Frontend\CheckoutController::class, 'thankYou'])->name('checkout.success');
+
+    // track order page
 });
+Route::get('/track-order', [App\Http\Controllers\Frontend\OrderController::class, 'trackOrder'])->name('order.track');
 
 

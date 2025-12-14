@@ -25,14 +25,6 @@
                         </div>
                     </div>
 
-                    <div class="icon-cards">
-                        <div class="header-right-content">
-                            <a href="#">
-                                <i class="fas fa-envelope"></i>
-                                <h3>Message</h3>
-                            </a>
-                        </div>
-                    </div>
 
                     <div class="icon-cards">
                         <div class="header-right-content">
@@ -43,7 +35,11 @@
                         </div>
                     </div>
 
+
+
                     @else
+
+
                     <!-- GUEST SEES: Login, Wishlist -->
                     <div class="icon-cards">
                         <div class="header-right-content">
@@ -54,16 +50,16 @@
                         </div>
                     </div>
 
+                    @endauth
+
                     <div class="icon-cards">
                         <div class="header-right-content position-relative">
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-                            <a href="#">
-                                <i class="fas fa-heart"></i>
-                                <h3>Wishlist</h3>
+                            <a href="{{ route('order.track') }}" wire:navigate>
+                                <i class="fas fa-shipping-fast"></i>
+                                <h3>Track Order</h3>
                             </a>
                         </div>
                     </div>
-                    @endauth
 
                     <!-- CART SECTION -->
                     <!-- Alpine Data: Handles switching between DB count (Auth) and LocalStorage count (Guest) -->

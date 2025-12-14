@@ -1,3 +1,4 @@
+@use('App\Enums\PaymentStatus')
 <div class="py-4">
     <h2 class="mb-4">Order Management</h2>
 
@@ -199,7 +200,7 @@
 </div>
 
 <script>
-    document.addEventListener('livewire:initialized', () => {
+    document.addEventListener('livewire:init', () => {
         // Order Details Modal
         const orderDetailsModalElement = document.getElementById('order-details-modal');
         const orderDetailsModal = new bootstrap.Modal(orderDetailsModalElement);

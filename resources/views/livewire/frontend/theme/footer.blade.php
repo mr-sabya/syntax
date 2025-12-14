@@ -75,8 +75,7 @@
                         <ul class="footer-widget-content">
                             <li><a href="{{ route('login') }}" wire:navigate>Login</a></li>
                             <li><a href="{{ route('register') }}" wire:navigate>Register</a></li>
-                            <li><a href="#">Settings</a></li>
-                            <li><a href="#">My Orders</a></li>
+                            <li><a href="{{ route('order.track') }}" wire:navigate>Track Order</a></li>
                         </ul>
                     </div>
                 </div>

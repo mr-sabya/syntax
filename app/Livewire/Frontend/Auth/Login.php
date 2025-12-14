@@ -37,7 +37,7 @@ class Login extends Component
             // Flash a session key to tell the frontend to clear localStorage
             session()->flash('clear_guest_cart', true);
 
-            return redirect()->intended(route('home'));
+            return $this->redirect(route('home'), navigate: true);
         }
 
         $this->addError('email', 'The provided credentials do not match our records.');
