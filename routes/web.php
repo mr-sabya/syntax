@@ -65,4 +65,6 @@ Route::get('/track-order', [App\Http\Controllers\Frontend\OrderController::class
 
 
 // dynamic pages
-Route::get('/{slug}', [App\Http\Controllers\Frontend\PageController::class, 'show'])->name('page.show');
+Route::get('/{slug}', [App\Http\Controllers\Frontend\PageController::class, 'show'])
+    ->name('page.show')
+    ->where('slug', '^(?!admin|login|register|dashboard).*$');

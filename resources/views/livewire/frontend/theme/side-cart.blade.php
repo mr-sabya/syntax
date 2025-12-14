@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mt-2">
-                    <span class="fw-bold">${{ number_format($item->product->price, 2) }}</span>
+                    <span class="fw-bold">৳{{ number_format($item->product->price, 2) }}</span>
 
                     {{-- Quantity Stepper --}}
                     <div class="input-group input-group-sm qty-container" style="width: 90px;">
@@ -110,8 +110,8 @@
     <div class="cart-footer bg-white border-top p-3 shadow-sm mt-auto">
         <div class="d-flex justify-content-between mb-3">
             <span class="h6 text-muted mb-0">Total Amount</span>
-            @auth <span class="h5 fw-bold mb-0">${{ number_format($subTotal, 2) }}</span> @endauth
-            @guest <span class="h5 fw-bold mb-0" x-text="'$' + guestTotal"></span> @endguest
+            @auth <span class="h5 fw-bold mb-0">৳{{ number_format($subTotal, 2) }}</span> @endauth
+            @guest <span class="h5 fw-bold mb-0" x-text="'৳' + guestTotal"></span> @endguest
         </div>
         <div class="row gx-2">
             <div class="col-6"><a href="{{ route('cart') }}" wire:navigate class="btn btn-outline-dark w-100">View Cart</a></div>
