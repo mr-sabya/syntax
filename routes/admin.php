@@ -119,6 +119,14 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/create', [App\Http\Controllers\Backend\CollectionController::class, 'create'])->name('create');
         Route::get('/{id}/edit', [App\Http\Controllers\Backend\CollectionController::class, 'edit'])->name('edit');
     });
+    
+
+    // page
+    Route::prefix('page')->name('page.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Backend\PageController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Backend\PageController::class, 'create'])->name('create');
+        Route::get('/{id}/edit', [App\Http\Controllers\Backend\PageController::class, 'edit'])->name('edit');
+    });
 
 
     // blog

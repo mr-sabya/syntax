@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
+
 // login route for admins
 Route::get('login', [App\Http\Controllers\Frontend\AuthController::class, 'login'])->name('login');
 Route::get('register', [App\Http\Controllers\Frontend\AuthController::class, 'register'])->name('register');
@@ -46,6 +49,8 @@ Route::get('/partners', [App\Http\Controllers\Frontend\PartnerController::class,
 // clients page
 Route::get('/clients', [App\Http\Controllers\Frontend\ClientController::class, 'index'])->name('clients');
 
+
+
 // check middleware
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'profile'])->name('profile');
@@ -59,3 +64,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/track-order', [App\Http\Controllers\Frontend\OrderController::class, 'trackOrder'])->name('order.track');
 
 
+// dynamic pages
+Route::get('/{slug}', [App\Http\Controllers\Frontend\PageController::class, 'show'])->name('page.show');

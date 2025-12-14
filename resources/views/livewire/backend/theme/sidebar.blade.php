@@ -184,7 +184,7 @@
                                     <span class="sub-item">Post</span>
                                 </a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </li>
@@ -274,6 +274,25 @@
                             <li class="{{ request()->routeIs('admin.software.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.software.index') }}" wire:navigate>
                                     <span class="sub-item">Software</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- pages -->
+                <li class="nav-item {{ request()->routeIs('admin.page.*') ? 'active submenu' : '' }}">
+                    <a data-bs-toggle="collapse" href="#pageManagement" class="collapsed" aria-expanded="{{ request()->routeIs('admin.page.*') ? 'true' : 'false' }}">
+                        <i class="fas fa-file-alt"></i> <!-- Changed from fa-cubes to fa-file-alt for Pages -->
+                        <p>Pages</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse {{ request()->routeIs('admin.page.*') ? 'show' : '' }}" id="pageManagement">
+                        <ul class="nav nav-collapse">
+                            <!-- pages -->
+                            <li class="{{ request()->routeIs('admin.page.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.page.index') }}" wire:navigate>
+                                    <span class="sub-item">Pages</span>
                                 </a>
                             </li>
                         </ul>

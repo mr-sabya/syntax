@@ -37,8 +37,8 @@
                         </div>
                         <ul class="footer-widget-content">
                             <li><a href="{{ route('about') }}" wire:navigate>About us</a></li>
-                            <li><a href="#">Privacy policy</a></li>
-                            <li><a href="#">Terms and conditions</a></li>
+                            <li><a href="{{ route('page.show', ['slug' => 'privacy-policy']) }}" wire:navigate>Privacy policy</a></li>
+                            <li><a href="{{ route('page.show', ['slug' => 'terms-and-conditions']) }}" wire:navigate>Terms and conditions</a></li>
                             <li><a href="{{ route('contact') }}" wire:navigate>Contact Us</a></li>
                         </ul>
                     </div>

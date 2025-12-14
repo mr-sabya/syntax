@@ -12,15 +12,13 @@
 
         <div class="row mb-3">
             <div class="col-md-8">
+                <!-- Product Details Card -->
                 <div class="card">
                     <div class="card-header">
                         <h5 class="m-0">Create New Product</h5>
                     </div>
                     <div class="card-body">
-
-
                         <div class="row">
-                            <!-- Basic Product Details -->
                             <div class="col-md-12 mb-3">
                                 <label for="name" class="form-label">Product Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" wire:model.live="name" placeholder="Enter product name">
@@ -35,9 +33,7 @@
                                 </div>
                             </div>
 
-
-
-                            <!-- Vendor Selection -->
+                            <!-- Vendor & Brand -->
                             <div class="col-md-6 mb-3">
                                 <label for="vendor_id" class="form-label">Vendor</label>
                                 <select class="form-select form-control @error('vendor_id') is-invalid @enderror" id="vendor_id" wire:model="vendor_id">
@@ -60,18 +56,17 @@
                                 @error('brand_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
-
                             <div class="col-md-12">
                                 <label for="short_description" class="form-label">Short Description</label>
                                 <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description" wire:model="short_description" rows="4" placeholder="A brief summary of the product"></textarea>
                                 @error('short_description') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Side Card: Image & Status -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
@@ -79,8 +74,6 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-
-                            <!-- Thumbnail Image -->
                             <div class="col-md-12 mb-3">
                                 <label for="new_thumbnail_image" class="form-label">Thumbnail Image</label>
                                 <div class="image-preview">
@@ -94,7 +87,6 @@
                                 <div wire:loading wire:target="new_thumbnail_image" class="text-info">Uploading...</div>
                                 @error('new_thumbnail_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
-
 
                             <div class="col-md-6 mb-3 ">
                                 <div class="form-check form-switch border">
@@ -129,12 +121,9 @@
                     <div class="card-body">
                         <div class="col-md-12">
                             <label for="long_description" class="form-label">Long Description</label>
-                            <livewire:quill-text-editor
-                                wire:model.live="long_description"
-                                theme="snow" />
+                            <livewire:quill-text-editor wire:model.live="long_description" theme="snow" />
                             @error('long_description') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -158,30 +147,28 @@
                                 <p class="text-muted">No categories available. Please create some first.</p>
                                 @endforelse
                             </div>
-                            @error('selectedCategoryIds') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror {{-- d-block to force visibility --}}
+                            @error('selectedCategoryIds') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
+        <!-- PRICING, VAT, TAX & INVENTORY CARD -->
         <div class="card">
             <div class="card-header">
-                <h5 class="m-0">Pricing, Inventory & Shipping</h5>
+                <h5 class="m-0">Pricing, Taxes & Inventory</h5>
             </div>
             <div class="card-body">
                 <div class="row">
-
-
-                    <!-- Price and SKU -->
+                    <!-- SKU -->
                     <div class="col-md-12 mb-3">
                         <label for="sku" class="form-label">SKU (Stock Keeping Unit)</label>
                         <input type="text" class="form-control @error('sku') is-invalid @enderror" id="sku" wire:model="sku" placeholder="Unique SKU">
                         @error('sku') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
+                    <!-- Base Prices -->
                     <div class="col-md-4 mb-3">
                         <label for="price" class="form-label">Price <span class="text-danger">*</span></label>
                         <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" wire:model="price" placeholder="0.00">
@@ -198,7 +185,30 @@
                         @error('cost_price') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    <!-- Shipping Details -->
+                    <!-- TAX & VAT Section -->
+                    <div class="col-md-12">
+                        <div class="row bg-light p-3 rounded mb-3">
+                            <h6 class="text-muted mb-2">Tax & VAT Configuration</h6>
+                            <div class="col-md-6 mb-3">
+                                <label for="vat" class="form-label">VAT Percentage (%)</label>
+                                <div class="input-group">
+                                    <input type="number" step="0.01" max="100" class="form-control @error('vat') is-invalid @enderror" id="vat" wire:model="vat" placeholder="0.00">
+                                    <span class="input-group-text">%</span>
+                                    @error('vat') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="tax" class="form-label">Tax Percentage (%)</label>
+                                <div class="input-group">
+                                    <input type="number" step="0.01" max="100" class="form-control @error('tax') is-invalid @enderror" id="tax" wire:model="tax" placeholder="0.00">
+                                    <span class="input-group-text">%</span>
+                                    @error('tax') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping -->
                     <div class="col-md-4 mb-3">
                         <label for="weight" class="form-label">Weight (kg/lbs)</label>
                         <input type="number" step="0.01" class="form-control @error('weight') is-invalid @enderror" id="weight" wire:model="weight" placeholder="0.00">
@@ -207,13 +217,13 @@
 
                     <!-- Order Quantities -->
                     <div class="col-md-4 mb-3">
-                        <label for="min_order_quantity" class="form-label">Minimum Order Quantity</label>
+                        <label for="min_order_quantity" class="form-label">Min Order Qty</label>
                         <input type="number" class="form-control @error('min_order_quantity') is-invalid @enderror" id="min_order_quantity" wire:model="min_order_quantity" placeholder="1">
                         @error('min_order_quantity') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="max_order_quantity" class="form-label">Maximum Order Quantity</label>
+                        <label for="max_order_quantity" class="form-label">Max Order Qty</label>
                         <input type="number" class="form-control @error('max_order_quantity') is-invalid @enderror" id="max_order_quantity" wire:model="max_order_quantity" placeholder="No limit">
                         @error('max_order_quantity') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
@@ -222,20 +232,17 @@
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-                        <!-- Title -->
                         <h5 class="mb-0 mb-md-0 me-md-4">Product Type & Inventory</h5>
 
-                        <!-- Product Type Control Group -->
                         <div class="d-flex align-items-center flex-wrap flex-md-nowrap product-type-group ms-md-auto">
                             <label for="type" class="form-label mb-0 me-2 text-nowrap">
                                 Product Type <span class="text-danger">*</span>
                             </label>
-                            <div class="flex-grow-1" style="min-width: 150px;"> <!-- Added min-width to prevent squishing -->
+                            <div class="flex-grow-1" style="min-width: 150px;">
                                 <select class="form-select @error('type') is-invalid @enderror" id="type" wire:model.live="type">
                                     @foreach ($productTypes as $productType)
                                     <option value="{{ $productType->value }}">{{ Str::title($productType->value) }}</option>
@@ -248,10 +255,7 @@
                     <div class="card-body">
                         <div class="row">
 
-
-
                             @if ($type === \App\Enums\ProductType::Normal->value)
-                            <!-- Stock Management -->
                             <div class="col-md-6 mb-3">
                                 <label for="is_manage_stock" class="form-label">Manage Stock</label>
                                 <div class="form-check form-switch">
@@ -274,10 +278,8 @@
                             <div class="col-md-12 mb-3">
                                 <p>Stock is managed by {{ $type === \App\Enums\ProductType::Variable->value ? 'product variants' : ($type === \App\Enums\ProductType::Affiliate->value ? 'the external vendor' : 'the digital product system') }}.</p>
                             </div>
-
                             @endif
 
-                            <!-- Conditional Fields based on Product Type -->
                             @if ($type === \App\Enums\ProductType::Affiliate->value)
                             <div class="col-md-12 mb-3">
                                 <label for="affiliate_url" class="form-label">Affiliate URL <span class="text-danger">*</span></label>
@@ -318,35 +320,26 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </form>
 
-
     @if ($product->exists)
     <div class="card mt-4">
         <div class="card-header bg-transparent border-bottom-0 pt-3 pb-0">
             <h5 class="mb-3">Additional Product Management</h5>
-
-            <!-- Tab Navigation -->
             <ul class="nav nav-tabs" id="productTabs" role="tablist">
-                <!-- Images Tab -->
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="images-tab" data-bs-toggle="tab" data-bs-target="#images" type="button" role="tab" aria-controls="images" aria-selected="true">
                         <i class="fas fa-images me-1"></i> Images
                     </button>
                 </li>
-
-                <!-- Specifications Tab -->
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="false">
                         <i class="fas fa-list-ul me-1"></i> Specifications
                     </button>
                 </li>
-
-                <!-- Variants Tab (Conditional) -->
                 @if ($product->isVariable())
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="variants-tab" data-bs-toggle="tab" data-bs-target="#variants" type="button" role="tab" aria-controls="variants" aria-selected="false">
@@ -354,15 +347,11 @@
                     </button>
                 </li>
                 @endif
-
-                <!-- Tags Tab -->
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="tags-tab" data-bs-toggle="tab" data-bs-target="#tags" type="button" role="tab" aria-controls="tags" aria-selected="false">
                         <i class="fas fa-tag me-1"></i> Tags
                     </button>
                 </li>
-
-                <!-- SEO Tab -->
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo" type="button" role="tab" aria-controls="seo" aria-selected="false">
                         <i class="fas fa-search me-1"></i> SEO
@@ -373,22 +362,16 @@
 
         <div class="card-body">
             <div class="tab-content" id="productTabsContent">
-
-                <!-- Images Content -->
                 <div class="tab-pane fade show active" id="images" role="tabpanel" aria-labelledby="images-tab">
                     <div class="py-2">
                         <livewire:backend.product.images-manager :product="$product" />
                     </div>
                 </div>
-
-                <!-- Specifications Content -->
                 <div class="tab-pane fade" id="specs" role="tabpanel" aria-labelledby="specs-tab">
                     <div class="py-2">
                         <livewire:backend.product.specifications-manager :product="$product" />
                     </div>
                 </div>
-
-                <!-- Variants Content (Conditional) -->
                 @if ($product->isVariable())
                 <div class="tab-pane fade" id="variants" role="tabpanel" aria-labelledby="variants-tab">
                     <div class="py-2">
@@ -396,24 +379,18 @@
                     </div>
                 </div>
                 @endif
-
-                <!-- Tags Content -->
                 <div class="tab-pane fade" id="tags" role="tabpanel" aria-labelledby="tags-tab">
                     <div class="py-2">
                         <livewire:backend.product.tags-manager :product="$product" />
                     </div>
                 </div>
-
-                <!-- SEO Content -->
                 <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tab">
                     <div class="py-2">
                         <livewire:backend.product.seo-manager :product="$product" />
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     @endif
-
 </div>

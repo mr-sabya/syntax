@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str; // For slug generation
-use App\Enums\ProductType; // We'll create this enum next
+use Illuminate\Support\Str;
+use App\Enums\ProductType;
 use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
@@ -25,6 +25,8 @@ class Product extends Model
         'price',
         'compare_at_price',
         'cost_price',
+        'vat', // Percentage
+        'tax', // Percentage
         'quantity',
         'weight',
         'is_active',
@@ -41,13 +43,22 @@ class Product extends Model
         'download_expiry_days',
     ];
 
-    // Add this line
-    protected $appends = ['thumbnail_url', 'current_stock', 'effective_price']; // Make sure all accessors you want included by default are here
+    // These will be available in the JSON response automatically
+    protected $appends = [
+        'thumbnail_url',
+        'current_stock',
+        'effective_price',
+        'vat_amount',   // Calculated currency value of VAT
+        'tax_amount',   // Calculated currency value of Tax
+        'total_price'   // Final price the customer pays
+    ];
 
     protected $casts = [
         'price' => 'decimal:2',
         'compare_at_price' => 'decimal:2',
         'cost_price' => 'decimal:2',
+        'vat' => 'decimal:2', // Cast as decimal
+        'tax' => 'decimal:2', // Cast as decimal
         'quantity' => 'integer',
         'weight' => 'decimal:2',
         'is_active' => 'boolean',
@@ -58,20 +69,19 @@ class Product extends Model
         'max_order_quantity' => 'integer',
         'download_limit' => 'integer',
         'download_expiry_days' => 'integer',
-        'type' => ProductType::class, // Cast to ProductType Enum
+        'type' => ProductType::class,
     ];
 
-
-    // Inside Product.php class
     protected $attributes = [
-        'type' => ProductType::Normal, // Assuming 'Normal' is a case in your Enum
+        'type' => ProductType::Normal,
         'is_active' => true,
         'quantity' => 0,
+        'vat' => 0.00,
+        'tax' => 0.00,
     ];
 
     /**
-     * The "booting" method of the model.
-     * Automatically generate slug.
+     * Boot logic for Slug generation.
      */
     protected static function boot()
     {
@@ -95,111 +105,64 @@ class Product extends Model
     | Relationships
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * Get the vendor that owns the product.
-     */
     public function vendor()
     {
         return $this->belongsTo(User::class, 'vendor_id');
     }
-
-    /**
-     * A product can belong to many categories.
-     */
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_product');
     }
-
-    /**
-     * Get the brand that the product belongs to.
-     */
     public function brand()
     {
         return $this->belongsTo(Brand::class);
     }
-
-    /**
-     * Get the images for the product.
-     */
     public function images()
     {
         return $this->hasMany(ProductImage::class);
     }
-
-    /**
-     * Get the variants for the product (if it's a variable product).
-     */
     public function variants()
     {
         return $this->hasMany(ProductVariant::class)->orderBy('id');
     }
-
-    /**
-     * Get the reviews for the product.
-     */
     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
-
-    /**
-     * Get the tags associated with the product.
-     */
     public function tags()
     {
-        return $this->belongsToMany(Tag::class); // Using default pivot table 'product_tag'
+        return $this->belongsToMany(Tag::class);
     }
-
-    /**
-     * Get the attribute values for non-variable products (e.g., specifications).
-     */
     public function attributeValues()
     {
         return $this->belongsToMany(AttributeValue::class, 'product_attribute_value');
     }
-
-    /**
-     * Get the order items associated with this product.
-     */
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
-
-    /**
-     * Get the downloads for this digital product.
-     */
     public function downloads()
     {
         return $this->hasMany(Download::class);
     }
-
-
-    /**
-     * The deals that this product is part of.
-     */
     public function deals()
     {
         return $this->belongsToMany(Deal::class);
     }
+
     /*
     |--------------------------------------------------------------------------
     | Scopes
     |--------------------------------------------------------------------------
     */
-
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
     }
-
     public function scopeFeatured($query)
     {
         return $query->where('is_featured', true);
     }
-
     public function scopeOfType($query, ProductType $type)
     {
         return $query->where('type', $type->value);
@@ -211,92 +174,52 @@ class Product extends Model
     |--------------------------------------------------------------------------
     */
 
-
-
-    /**
-     * Check if the product is a normal product.
-     */
     public function isNormal(): bool
     {
-        // Use the null-safe operator (?->) and null coalescing operator (??)
         return $this->type?->isNormal() ?? false;
     }
-
-    /**
-     * Check if the product is a variable product.
-     */
     public function isVariable(): bool
     {
         return $this->type?->isVariable() ?? false;
     }
-
-    /**
-     * Check if the product is an affiliate product.
-     */
     public function isAffiliate(): bool
     {
         return $this->type?->isAffiliate() ?? false;
     }
-
-    /**
-     * Check if the product is a digital product.
-     */
     public function isDigital(): bool
     {
         return $this->type?->isDigital() ?? false;
     }
 
-    /**
-     * Get the current stock for the product (considers variants if applicable).
-     */
     public function getCurrentStockAttribute(): int
     {
         if ($this->isVariable()) {
-            // sum() returns numeric, but casting ensures it's strictly an integer
             return (int) $this->variants()->sum('quantity');
         }
-
-        // Cast to int ensures 'null' becomes 0
         return (int) $this->quantity;
     }
 
-    /**
-     * Get the main thumbnail image URL for the product.
-     */
-    // Add this accessor for convenience
-    /**
-     * Get the main thumbnail image URL for the product.
-     */
     public function getThumbnailUrlAttribute()
     {
-        // If an image path exists, return the full URL using the storage folder
         if ($this->thumbnail_image_path) {
             return url('storage/' . $this->thumbnail_image_path);
         }
-
-        // Optional: Return a default placeholder image if no thumbnail exists
-        // return asset('assets/frontend/images/no-image.png');
-
         return null;
     }
 
-
     /**
-     * Get the current effective price of the product, considering active deals.
-     * This is a more advanced accessor.
+     * Get the base effective price (Discounted Price), BEFORE Tax/VAT is applied.
      */
     public function getEffectivePriceAttribute()
     {
-        // Eager load active deals if not already loaded
         if (!$this->relationLoaded('deals')) {
             $this->load(['deals' => function ($query) {
                 $query->active();
             }]);
         }
 
-        // Find the most impactful active deal for this product
         $activeDeal = $this->deals->filter(fn($deal) => $deal->is_active)
-            ->sortByDesc('value') // Prioritize higher discounts
+            ->sortByDesc('value')
             ->first();
 
         if ($activeDeal) {
@@ -304,10 +227,55 @@ class Product extends Model
             if ($activeDeal->type === 'percentage') {
                 return $originalPrice * (1 - ($activeDeal->value / 100));
             } elseif ($activeDeal->type === 'fixed') {
-                return max(0, $originalPrice - $activeDeal->value); // Price shouldn't go below 0
+                return max(0, $originalPrice - $activeDeal->value);
             }
         }
 
-        return $this->price; // No active deal, return original price
+        return $this->price;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tax and VAT Logic (Both Percentage)
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Calculate VAT Amount based on Effective Price.
+     * Logic: (Effective Price * VAT%) / 100
+     */
+    public function getVatAmountAttribute()
+    {
+        $price = $this->effective_price;
+
+        if ($this->vat > 0) {
+            return ($price * $this->vat) / 100;
+        }
+
+        return 0.00;
+    }
+
+    /**
+     * Calculate Tax Amount based on Effective Price.
+     * Logic: (Effective Price * Tax%) / 100
+     */
+    public function getTaxAmountAttribute()
+    {
+        $price = $this->effective_price;
+
+        if ($this->tax > 0) {
+            return ($price * $this->tax) / 100;
+        }
+
+        return 0.00;
+    }
+
+    /**
+     * Get the Final Total Price.
+     * Logic: Effective Price + VAT Amount + Tax Amount
+     */
+    public function getTotalPriceAttribute()
+    {
+        return $this->effective_price + $this->vat_amount + $this->tax_amount;
     }
 }
